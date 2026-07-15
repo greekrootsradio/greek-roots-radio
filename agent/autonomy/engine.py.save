@@ -1,0 +1,37 @@
+import threading
+import time
+
+
+class AutonomyEngine:
+
+    def __init__(self):
+        self.running = False
+
+    def loop(self):
+
+        while self.running:
+
+            print("[ZETA] Thinking...")
+
+            # Future tasks:
+            # review memory
+            # check projects
+            # analyse conversations
+            # generate improvements
+
+            time.sleep(30)
+
+    def start(self):
+
+        if self.running:
+            return
+
+        self.running = True
+
+        thread = threading.Thread(
+            target=self.loop,
+            daemon=True
+        )
+
+        thread.start()
+

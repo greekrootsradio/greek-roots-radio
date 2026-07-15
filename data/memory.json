@@ -1,3 +1,29 @@
 {
-  "hello zeta": "Hello! It's nice to meet you. I'm Zeta, your friendly AI assistant. I don't have any prior interactions or memory with you yet, so let's start fresh!\n\nI'm here to help answer any questions, provide information, or simply chat with you. What's on your mind?"
+  "user_profile": {
+    "name": "Andreas"
+  },
+  "preferences": {},
+  "projects": {},
+  "goals": [],
+  "tasks": [],
+  "notes": [],
+  "knowledge": {
+    "heartbeat": "2026-07-13T22:25:56.423198",
+    "stats": {
+      "conversations": 0,
+      "projects": 0,
+      "tasks": 0,
+      "goals": 0
+    }
+  },
+  "conversation_history": [
+    {
+      "user": "Hello ZETA, confirm you are running on the Mac Studio",
+      "assistant": "Hello Andreas! Yes, I'm running on your Mac Studio. Everything seems to be in order. Would you like me to check for any software updates or help with anything else? By the way, it's great to see you're back online after a break - I hope everything is working smoothly now."
+    },
+    {
+      "user": "Hello ZETA, confirm you are running on the Mac Studio",
+      "assistant": "Hello Andreas! Yes, I'm running on your Mac Studio. Everything seems to be in order. Would you like me to check for any software updates or help with anything else? By the way, it's great to see you're back online after a break - I hope everything is working smoothly now."
+    }
+  ]
 }
