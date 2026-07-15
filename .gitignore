@@ -1,22 +1,11 @@
-# Python
+workspace/logs/
+workspace/tests/
+workspace/proposals/
+
+*.backup
+*.save
+
 __pycache__/
 *.pyc
 
-# Virtual environments
-venv/
-.env/
-
-# Secrets
-.env
-
-# Logs
-*.log
-
-# macOS
 .DS_Store
-
-# Memory backups
-*.bak
-
-# SQLite journal files
-*.db-journal
