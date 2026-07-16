@@ -125,5 +125,20 @@
         "result": "passed",
         "inspection_count": 17,
         "time": "2026-07-16 21:40:57.126001"
+    },
+    {
+        "module": "executive_engine",
+        "result": "decision_complete",
+        "time": "2026-07-16 22:10:30.637474"
+    },
+    {
+        "module": "executive_engine",
+        "result": "decision_complete",
+        "time": "2026-07-16 22:26:39.699529"
+    },
+    {
+        "module": "executive_engine",
+        "result": "decision_complete",
+        "time": "2026-07-16 22:31:46.036829"
     }
 ]
