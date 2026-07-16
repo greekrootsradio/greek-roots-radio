@@ -1,83 +1,61 @@
-import os
-from datetime import datetime
-
-from agent.autonomy.self_inspector import SelfInspector
-from agent.autonomy.planner import PlannerAgent
 from agent.autonomy.logger import ZetaLogger
+from agent.autonomy.self_inspector import SelfInspector
 from agent.autonomy.development_cycle import DevelopmentCycle
-from agent.autonomy.learning_memory import LearningMemory
+from agent.autonomy.experience_engine import ExperienceEngine
 
 
 class ZetaSupervisor:
 
     def __init__(self):
 
-        self.inspector = SelfInspector()
-        self.planner = PlannerAgent()
         self.logger = ZetaLogger()
+        self.inspector = SelfInspector()
         self.development = DevelopmentCycle()
-        self.memory = LearningMemory()
+        self.experience = ExperienceEngine()
 
 
     def run_cycle(self):
 
-        self.logger.log(
+        print("[ZETA SUPERVISOR] Starting maintenance cycle")
+
+        self.logger.write(
             "ZETA supervisor cycle started"
         )
 
-        print(
-            "\n[ZETA SUPERVISOR] Starting maintenance cycle\n"
-        )
 
-
-        # 1. Inspect herself
+        print("[ZETA SUPERVISOR] Inspecting system")
 
         inspection = self.inspector.inspect()
 
 
-        # 2. Create improvement plan
-
-        plan = self.planner.analyse()
-
-
-        self.logger.log(
-            f"Inspection complete: {inspection['count']} modules found"
-        )
-
-        self.logger.log(
-            f"Recommended build: {plan['recommended_next_build']}"
-        )
+        print("[ZETA INSPECTOR]")
+        print(inspection)
 
 
-        print(
-            "\n[ZETA SUPERVISOR] Starting development cycle\n"
-        )
+        print("[ZETA SUPERVISOR] Starting development cycle")
 
-
-        # 3. Build improvement proposal
 
         self.development.run()
 
 
-        # 4. Store experience
-
-        self.memory.remember(
+        self.experience.record_cycle(
             {
-                "action": "completed supervisor development cycle",
-                "build": plan["recommended_next_build"],
-                "modules_found": inspection["count"],
-                "result": "development cycle completed"
+                "module": "supervisor_cycle",
+                "result": "passed",
+                "inspection_count": inspection.get(
+                    "count",
+                    0
+                )
             }
         )
 
 
         print(
-            "\n[ZETA SUPERVISOR] Cycle complete"
+            "[ZETA SUPERVISOR] Cycle complete"
         )
 
 
         return {
             "inspection": inspection,
-            "plan": plan,
-            "memory": "updated"
+            "experience": self.experience.summarize()
         }
