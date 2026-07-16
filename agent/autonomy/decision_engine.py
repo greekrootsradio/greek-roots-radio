@@ -11,15 +11,8 @@ class DecisionEngine:
             "~/cyprus/data/goals.json"
         )
 
-        self.history_file = os.path.expanduser(
-            "~/cyprus/data/development_history.json"
-        )
-
 
     def load_goals(self):
-
-        if not os.path.exists(self.goals_file):
-            return []
 
         with open(self.goals_file, "r") as f:
             return json.load(f)
@@ -29,27 +22,53 @@ class DecisionEngine:
 
         goals = self.load_goals()
 
-        if goals:
+        # Support new Goal Manager format
+        if isinstance(goals, dict):
 
-            priority = goals[0]
+            active = goals.get("active", [])
 
         else:
 
-            priority = {
-                "goal": "improve autonomy",
-                "priority": 100
+            active = goals
+
+
+        if not active:
+
+            return {
+                "decision": None,
+                "time": str(datetime.now())
             }
 
 
-        decision = {
+        # Sort highest priority first
 
-            "decision": priority,
+        active = sorted(
+            active,
+            key=lambda x: x.get("priority",0),
+            reverse=True
+        )
+
+
+        priority = active[0]
+
+
+        result = {
+
+            "decision": {
+                "goal": priority["goal"],
+                "priority": priority["priority"],
+                "status": priority.get(
+                    "status",
+                    "active"
+                )
+            },
+
             "time": str(datetime.now())
 
         }
 
 
         print("[ZETA DECISION]")
-        print(decision)
+        print(result)
 
-        return decision
+        return result
