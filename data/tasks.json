@@ -1,0 +1,12 @@
+{
+    "active": [
+        {
+            "task": "Build permanent memory system",
+            "priority": 100,
+            "status": "active",
+            "created": "2026-07-16 22:37:31.110730"
+        }
+    ],
+    "completed": [],
+    "history": []
+}
