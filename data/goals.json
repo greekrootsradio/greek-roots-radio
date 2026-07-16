@@ -1,42 +1,99 @@
-[
-  {
-    "goal": "experience_engine",
-    "priority": 100,
-    "status": "active"
-  },
-  {
-    "goal": "task_manager",
-    "priority": 90,
-    "status": "active"
-  },
-  {
-    "goal": "goal_manager",
-    "priority": 80,
-    "status": "active"
-  },
-  {
-    "goal": "calendar",
-    "priority": 70,
-    "status": "active"
-  },
-  {
-    "goal": "email",
-    "priority": 60,
-    "status": "active"
-  },
-  {
-    "goal": "web_search",
-    "priority": 50,
-    "status": "active"
-  },
-  {
-    "goal": "documents",
-    "priority": 40,
-    "status": "active"
-  },
-  {
-    "goal": "automation",
-    "priority": 30,
-    "status": "active"
-  }
-]
+{
+    "active": [
+        {
+            "goal": "experience_engine",
+            "priority": 100,
+            "status": "active"
+        },
+        {
+            "goal": "task_manager",
+            "priority": 90,
+            "status": "active"
+        },
+        {
+            "goal": "goal_manager",
+            "priority": 80,
+            "status": "active"
+        },
+        {
+            "goal": "calendar",
+            "priority": 70,
+            "status": "active"
+        },
+        {
+            "goal": "email",
+            "priority": 60,
+            "status": "active"
+        },
+        {
+            "goal": "web_search",
+            "priority": 50,
+            "status": "active"
+        },
+        {
+            "goal": "documents",
+            "priority": 40,
+            "status": "active"
+        },
+        {
+            "goal": "automation",
+            "priority": 30,
+            "status": "active"
+        },
+        {
+            "goal": "Build permanent memory system",
+            "priority": 100,
+            "status": "active",
+            "created": "2026-07-16 22:16:43.159599"
+        }
+    ],
+    "completed": [],
+    "history": [
+        {
+            "goal": "experience_engine",
+            "priority": 100,
+            "status": "active"
+        },
+        {
+            "goal": "task_manager",
+            "priority": 90,
+            "status": "active"
+        },
+        {
+            "goal": "goal_manager",
+            "priority": 80,
+            "status": "active"
+        },
+        {
+            "goal": "calendar",
+            "priority": 70,
+            "status": "active"
+        },
+        {
+            "goal": "email",
+            "priority": 60,
+            "status": "active"
+        },
+        {
+            "goal": "web_search",
+            "priority": 50,
+            "status": "active"
+        },
+        {
+            "goal": "documents",
+            "priority": 40,
+            "status": "active"
+        },
+        {
+            "goal": "automation",
+            "priority": 30,
+            "status": "active"
+        },
+        {
+            "goal": "Build permanent memory system",
+            "priority": 100,
+            "status": "active",
+            "created": "2026-07-16 22:16:43.159599"
+        }
+    ]
+}
