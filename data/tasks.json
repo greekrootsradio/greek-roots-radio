@@ -4,12 +4,6 @@
             "task": "Build permanent memory system",
             "priority": 100,
             "status": "active",
-            "created": "2026-07-16 22:37:31.110730"
-        },
-        {
-            "task": "Build permanent memory system",
-            "priority": 100,
-            "status": "active",
             "created": "2026-07-17 21:13:16.898038"
         },
         {
@@ -55,6 +49,22 @@
             "created": "2026-07-17 21:39:31.342716"
         }
     ],
-    "completed": [],
-    "history": []
+    "completed": [
+        {
+            "task": "Build permanent memory system",
+            "priority": 100,
+            "status": "completed",
+            "created": "2026-07-16 22:37:31.110730",
+            "completed": "2026-07-17 21:57:35.889239"
+        }
+    ],
+    "history": [
+        {
+            "task": "Build permanent memory system",
+            "priority": 100,
+            "status": "completed",
+            "created": "2026-07-16 22:37:31.110730",
+            "completed": "2026-07-17 21:57:35.889239"
+        }
+    ]
 }

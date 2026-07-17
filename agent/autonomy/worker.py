@@ -1,6 +1,8 @@
+import os
+from datetime import datetime
+
 from agent.autonomy.task_manager import TaskManager
 from agent.autonomy.developer_agent import DeveloperAgent
-from agent.autonomy.experience_engine import ExperienceEngine
 
 
 class ZetaWorker:
@@ -9,7 +11,6 @@ class ZetaWorker:
 
         self.tasks = TaskManager()
         self.developer = DeveloperAgent()
-        self.experience = ExperienceEngine()
 
 
     def run_once(self):
@@ -17,22 +18,20 @@ class ZetaWorker:
         print("[ZETA WORKER] Checking tasks")
 
 
-        task_list = self.tasks.tasks
-
-
-        active = [
-            t for t in task_list
-            if t["status"] == "active"
-        ]
+        active = self.tasks.tasks["active"]
 
 
         if not active:
 
             print("[ZETA WORKER] No active tasks")
+
             return {
-                "status": "idle"
+                "status": "idle",
+                "time": str(datetime.now())
             }
 
+
+        # highest priority task first
 
         active.sort(
             key=lambda x: x["priority"],
@@ -54,21 +53,26 @@ class ZetaWorker:
         )
 
 
-        task["status"] = "complete"
+        if result["status"] == "complete":
+
+            self.tasks.complete_task(
+                task
+            )
 
 
-        self.experience.record_cycle(
-            {
-                "module": "worker",
-                "task": task["task"],
-                "result": "completed"
-            }
-        )
+            print(
+                "[ZETA WORKER] Task completed"
+            )
 
 
-        print(
-            "[ZETA WORKER] Task complete"
-        )
+        return {
 
+            "task": task,
 
-        return result
+            "result": result,
+
+            "status": "complete",
+
+            "time": str(datetime.now())
+
+        }
