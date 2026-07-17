@@ -155,5 +155,10 @@
         "module": "executive_engine",
         "result": "decision_complete",
         "time": "2026-07-17 21:15:49.019195"
+    },
+    {
+        "module": "executive_engine",
+        "result": "goal_decomposed",
+        "time": "2026-07-17 21:39:31.343016"
     }
 ]

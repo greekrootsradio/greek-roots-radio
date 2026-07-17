@@ -4,6 +4,7 @@ from agent.autonomy.decision_engine import DecisionEngine
 from agent.autonomy.experience_engine import ExperienceEngine
 from agent.autonomy.planner import PlannerAgent
 from agent.autonomy.task_manager import TaskManager
+from agent.autonomy.task_decomposer import TaskDecomposer
 
 
 class ExecutiveEngine:
@@ -14,6 +15,7 @@ class ExecutiveEngine:
         self.experience = ExperienceEngine()
         self.planner = PlannerAgent()
         self.tasks = TaskManager()
+        self.decomposer = TaskDecomposer()
 
 
     def think(self):
@@ -27,34 +29,50 @@ class ExecutiveEngine:
         plan = self.planner.generate_plan()
 
 
-        created_task = None
+        created_tasks = []
+
 
         if plan:
 
-            created_task = self.tasks.create_task(
-                plan["module"],
-                plan["priority"]
+            breakdown = self.decomposer.decompose(
+                plan["module"]
             )
 
 
+            for item in breakdown["tasks"]:
+
+                task = self.tasks.create_task(
+                    item["task"],
+                    item["priority"]
+                )
+
+                created_tasks.append(task)
+
+
         result = {
+
             "time": str(datetime.now()),
+
             "decision": decision,
+
             "plan": plan,
-            "task": created_task,
+
+            "tasks": created_tasks,
+
             "status": "ready"
+
         }
 
 
         self.experience.record_cycle(
             {
                 "module": "executive_engine",
-                "result": "decision_complete"
+                "result": "goal_decomposed"
             }
         )
 
 
-        print("[ZETA EXECUTIVE] Decision complete")
+        print("[ZETA EXECUTIVE] Goal decomposition complete")
 
 
         return result
