@@ -15,26 +15,37 @@ class PlannerAgent:
             "~/cyprus/workspace/proposals"
         )
 
+
     def _load_goals(self):
 
-        if os.path.exists(self.goals_file):
+        if not os.path.exists(self.goals_file):
+            return []
 
-            try:
+        try:
 
-                with open(self.goals_file, "r") as f:
-                    goals = json.load(f)
+            with open(self.goals_file, "r") as f:
+                data = json.load(f)
 
-                if isinstance(goals, list):
-                    return sorted(
-                        goals,
-                        key=lambda g: g.get("priority", 0),
-                        reverse=True
-                    )
+            if isinstance(data, dict):
+                goals = data.get("active", [])
 
-            except Exception as e:
-                print(f"[Planner] Could not read goals: {e}")
+            elif isinstance(data, list):
+                goals = data
 
-        return []
+            else:
+                goals = []
+
+            return sorted(
+                goals,
+                key=lambda g: g.get("priority", 0),
+                reverse=True
+            )
+
+        except Exception as e:
+
+            print(f"[Planner] Could not read goals: {e}")
+            return []
+
 
     def _existing_modules(self):
 
@@ -49,6 +60,7 @@ class PlannerAgent:
 
         return modules
 
+
     def _choose_goal(self):
 
         goals = self._load_goals()
@@ -57,7 +69,11 @@ class PlannerAgent:
         for goal in goals:
 
             name = goal.get("goal", "").strip()
-            status = goal.get("status", "active")
+
+            status = goal.get(
+                "status",
+                "active"
+            )
 
             if not name:
                 continue
@@ -72,17 +88,21 @@ class PlannerAgent:
 
         return None
 
+
     def generate_plan(self):
 
         goal = self._choose_goal()
 
         if goal is None:
+
             print("[Planner] No active goals left.")
             return None
 
         module = goal["goal"]
 
-        print(f"[Planner] Next capability: {module}")
+        print(
+            f"[Planner] Next capability: {module}"
+        )
 
         return {
             "module": module,
@@ -91,18 +111,23 @@ class PlannerAgent:
             "priority": goal.get("priority", 0)
         }
 
+
     def analyse(self):
 
         goal = self._choose_goal()
 
         if goal is None:
+
             print("[Planner] No active goals left.")
+
             return {
                 "recommended_next_build": None,
                 "time": str(datetime.now())
             }
 
-        print(f"[Planner] Recommended build: {goal['goal']}")
+        print(
+            f"[Planner] Recommended build: {goal['goal']}"
+        )
 
         return {
             "recommended_next_build": goal["goal"],
