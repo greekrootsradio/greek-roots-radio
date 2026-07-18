@@ -23,9 +23,14 @@ class ZetaSupervisorController:
         )
 
 
-    def write(self,message):
+    def write(self, message):
 
-        with open(self.log,"a") as f:
+        os.makedirs(
+            os.path.dirname(self.log),
+            exist_ok=True
+        )
+
+        with open(self.log, "a") as f:
             f.write(
                 f"{datetime.datetime.now()} {message}\n"
             )
@@ -56,8 +61,13 @@ class ZetaSupervisorController:
         )
 
 
-        SupervisorExecutor().execute(
+        result = SupervisorExecutor().execute(
             decision
+        )
+
+
+        self.write(
+            f"Action result: {result}"
         )
 
 
@@ -66,7 +76,12 @@ class ZetaSupervisorController:
         )
 
 
+        return result
+
+
 
 if __name__ == "__main__":
 
-    ZetaSupervisorController().run_once()
+    result = ZetaSupervisorController().run_once()
+
+    print(result)
