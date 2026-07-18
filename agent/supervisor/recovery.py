@@ -50,21 +50,46 @@ class ZetaRecovery:
         except Exception as e:
 
             self.write(
-                f"Restart failed: {e}"
+                f"Recovery error: {e}"
             )
 
 
-    def recover(self):
+    def check(self):
 
         self.write(
-            "=== ZETA RECOVERY STARTED ==="
+            "=== ZETA RECOVERY CHECK ==="
         )
 
-        self.write(
-            "Recovery check complete"
+        core_log = os.path.expanduser(
+            "~/cyprus/cyprus_error.log"
         )
+
+
+        if os.path.exists(core_log):
+
+            size = os.path.getsize(core_log)
+
+            if size > 50000:
+
+                self.write(
+                    "Large error log detected"
+                )
+
+                self.restart_core()
+
+            else:
+
+                self.write(
+                    "Core appears healthy"
+                )
+
+        else:
+
+            self.write(
+                "No error log found"
+            )
 
 
 if __name__ == "__main__":
 
-    ZetaRecovery().recover()
+    ZetaRecovery().check()
