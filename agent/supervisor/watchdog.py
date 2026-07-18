@@ -4,18 +4,17 @@ import os
 import sys
 
 
-# Ensure ZETA root is available
 BASE_DIR = os.path.expanduser("~/cyprus")
 
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
 
-from agent.supervisor.health import ZetaHealth
-from agent.supervisor.recovery import ZetaRecovery
+from agent.supervisor.controller import ZetaSupervisorController
 
 
 class ZetaWatchdog:
+
 
     def __init__(self):
 
@@ -40,48 +39,34 @@ class ZetaWatchdog:
     def run(self):
 
         self.write(
-            "=== ZETA WATCHDOG STARTED ==="
+            "=== ZETA WATCHDOG SUPERVISOR MODE STARTED ==="
         )
 
-        health = ZetaHealth()
-        recovery = ZetaRecovery()
+        controller = ZetaSupervisorController()
 
 
         while True:
 
             self.write(
-                "Running health check"
+                "Starting supervisor cycle"
             )
 
 
             try:
 
-                result = health.check()
+                controller.run_once()
 
 
-                if result is False:
-
-                    self.write(
-                        "Health failure detected"
-                    )
-
-                    recovery.check()
-
-
-                else:
-
-                    self.write(
-                        "Health check completed"
-                    )
+                self.write(
+                    "Supervisor cycle completed"
+                )
 
 
             except Exception as e:
 
                 self.write(
-                    f"Health check error: {e}"
+                    f"Supervisor cycle error: {e}"
                 )
-
-                recovery.check()
 
 
             time.sleep(300)
