@@ -1,9 +1,11 @@
 import os
-import datetime
 import subprocess
+import datetime
+import time
 
 
-class ZetaRecovery:
+class SupervisorRecovery:
+
 
     def __init__(self):
 
@@ -28,68 +30,152 @@ class ZetaRecovery:
     def restart_core(self):
 
         self.write(
-            "Attempting ZETA core restart"
+            "CORE recovery started"
         )
 
         try:
 
             subprocess.run(
                 [
-                    "launchctl",
-                    "kickstart",
-                    "-k",
-                    "gui/$(id -u)/com.zeta.core"
+                    "pkill",
+                    "-f",
+                    "main.py"
                 ],
-                shell=True
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
             )
 
-            self.write(
-                "Core restart command sent"
+
+            time.sleep(3)
+
+
+            subprocess.Popen(
+                [
+                    "python3",
+                    "main.py"
+                ],
+                cwd=os.path.expanduser(
+                    "~/cyprus"
+                )
             )
+
+
+            self.write(
+                "CORE restarted successfully"
+            )
+
+            return "core_recovered"
+
 
         except Exception as e:
 
             self.write(
-                f"Recovery error: {e}"
+                f"CORE recovery failed: {e}"
             )
 
+            return "core_recovery_failed"
 
-    def check(self):
+
+
+    def restart_ollama(self):
 
         self.write(
-            "=== ZETA RECOVERY CHECK ==="
+            "OLLAMA recovery started"
         )
 
-        core_log = os.path.expanduser(
-            "~/cyprus/cyprus_error.log"
-        )
+        try:
+
+            subprocess.run(
+                [
+                    "pkill",
+                    "ollama"
+                ],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
 
 
-        if os.path.exists(core_log):
+            time.sleep(3)
 
-            size = os.path.getsize(core_log)
 
-            if size > 50000:
+            subprocess.Popen(
+                [
+                    "ollama",
+                    "serve"
+                ]
+            )
 
-                self.write(
-                    "Large error log detected"
-                )
-
-                self.restart_core()
-
-            else:
-
-                self.write(
-                    "Core appears healthy"
-                )
-
-        else:
 
             self.write(
-                "No error log found"
+                "OLLAMA restarted successfully"
             )
+
+            return "ollama_recovered"
+
+
+        except Exception as e:
+
+            self.write(
+                f"OLLAMA recovery failed: {e}"
+            )
+
+            return "ollama_recovery_failed"
+
+
+
+    def repair_memory(self):
+
+        self.write(
+            "MEMORY recovery started"
+        )
+
+
+        memory_file = os.path.expanduser(
+            "~/cyprus/memory.json"
+        )
+
+
+        if os.path.exists(memory_file):
+
+            self.write(
+                "Memory file exists - no repair required"
+            )
+
+            return "memory_ok"
+
+
+
+        try:
+
+            with open(memory_file, "w") as f:
+
+                f.write(
+                    "{}"
+                )
+
+
+            self.write(
+                "Memory file recreated"
+            )
+
+            return "memory_repaired"
+
+
+
+        except Exception as e:
+
+            self.write(
+                f"Memory repair failed: {e}"
+            )
+
+            return "memory_repair_failed"
+
 
 
 if __name__ == "__main__":
 
-    ZetaRecovery().check()
+    recovery = SupervisorRecovery()
+
+    print(
+        recovery.repair_memory()
+    )
