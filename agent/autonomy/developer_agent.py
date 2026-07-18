@@ -1,51 +1,23 @@
-from agent.autonomy.coder import CodeWriter
-from agent.autonomy.tester import TesterAgent
+import re
 
 
-class DeveloperAgent:
+class NamingEngine:
 
-    def __init__(self):
+    def clean_module_name(self, name):
 
-        self.coder = CodeWriter()
-        self.tester = TesterAgent()
+        name = name.lower()
 
-
-    def build(self, task):
-
-        print("[ZETA DEVELOPER] Building:", task)
-
-
-        name = (
-            task.lower()
-            .replace(" ", "_")
+        name = re.sub(
+            r'[^a-z0-9]+',
+            '_',
+            name
         )
 
-
-        self.coder.create_module(
-            name,
-            task
-        )
+        return name.strip("_")
 
 
-        tests = self.tester.test_all()
+def clean_module_name(name):
 
+    engine = NamingEngine()
 
-        result = {
-
-            "task": task,
-
-            "module": name,
-
-            "tests": tests,
-
-            "status": "complete"
-
-        }
-
-
-        print(
-            "[ZETA DEVELOPER] Build complete"
-        )
-
-
-        return result
+    return engine.clean_module_name(name)
