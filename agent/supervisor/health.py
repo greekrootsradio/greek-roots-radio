@@ -1,5 +1,4 @@
 import os
-import json
 import datetime
 import urllib.request
 
@@ -31,32 +30,57 @@ class ZetaHealth:
         self.write("=== ZETA HEALTH CHECK ===")
 
 
-        # memory
+        # ------------------------------------
+        # MEMORY CHECK
+        # ------------------------------------
+
         memory = os.path.expanduser(
-            "~/cyprus/memory.json"
+            "~/cyprus/data/memory.json"
         )
 
         if os.path.exists(memory):
-            self.write("Memory: OK")
+
+            self.write(
+                "Memory: OK"
+            )
+
         else:
-            self.write("Memory: ERROR")
+
+            self.write(
+                "Memory: ERROR - memory file missing"
+            )
 
 
-        # Flask
+        # ------------------------------------
+        # CORE API CHECK
+        # ------------------------------------
+
         try:
+
             urllib.request.urlopen(
                 "http://127.0.0.1:5050",
                 timeout=3
             )
-            self.write("Core API: OK")
+
+            self.write(
+                "Core API: OK"
+            )
+
 
         except Exception as e:
+
             self.write(
                 f"Core API: ERROR {e}"
             )
 
 
-        self.write("Health check complete")
+        # ------------------------------------
+        # COMPLETE
+        # ------------------------------------
+
+        self.write(
+            "Health check complete"
+        )
 
 
 if __name__ == "__main__":
