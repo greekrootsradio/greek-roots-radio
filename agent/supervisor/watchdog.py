@@ -1,8 +1,16 @@
 import time
 import datetime
 import os
+import sys
 
-from health import ZetaHealth
+# Ensure ZETA root is available
+BASE_DIR = os.path.expanduser("~/cyprus")
+
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+
+from agent.supervisor.health import ZetaHealth
 
 
 class ZetaWatchdog:
