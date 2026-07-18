@@ -1,6 +1,6 @@
 import os
 import datetime
-import urllib.request
+import requests
 
 
 class ZetaHealth:
@@ -25,64 +25,96 @@ class ZetaHealth:
             )
 
 
-    def check(self):
-
-        self.write("=== ZETA HEALTH CHECK ===")
-
-
-        # ------------------------------------
-        # MEMORY CHECK
-        # ------------------------------------
-
-        memory = os.path.expanduser(
-            "~/cyprus/data/memory.json"
-        )
-
-        if os.path.exists(memory):
-
-            self.write(
-                "Memory: OK"
-            )
-
-        else:
-
-            self.write(
-                "Memory: ERROR - memory file missing"
-            )
-
-
-        # ------------------------------------
-        # CORE API CHECK
-        # ------------------------------------
+    def check_core(self):
 
         try:
 
-            urllib.request.urlopen(
+            response = requests.get(
                 "http://127.0.0.1:5050",
-                timeout=3
+                timeout=5
             )
 
-            self.write(
-                "Core API: OK"
+            if response.status_code < 500:
+                return "healthy"
+
+            return "failed"
+
+
+        except Exception:
+
+            return "failed"
+
+
+
+    def check_ollama(self):
+
+        try:
+
+            response = requests.get(
+                "http://127.0.0.1:11434",
+                timeout=5
             )
 
+            if response.status_code < 500:
+                return "healthy"
 
-        except Exception as e:
-
-            self.write(
-                f"Core API: ERROR {e}"
-            )
+            return "failed"
 
 
-        # ------------------------------------
-        # COMPLETE
-        # ------------------------------------
+        except Exception:
+
+            return "failed"
+
+
+
+    def check_memory(self):
+
+        memory_file = os.path.expanduser(
+            "~/cyprus/memory.json"
+        )
+
+        if os.path.exists(memory_file):
+
+            return "healthy"
+
+        return "failed"
+
+
+
+    def check(self):
 
         self.write(
-            "Health check complete"
+            "=== HEALTH CHECK START ==="
         )
+
+
+        health = {
+
+            "core": self.check_core(),
+
+            "ollama": self.check_ollama(),
+
+            "memory": self.check_memory()
+
+        }
+
+
+        self.write(
+            f"Health result: {health}"
+        )
+
+
+        self.write(
+            "=== HEALTH CHECK COMPLETE ==="
+        )
+
+
+        return health
+
 
 
 if __name__ == "__main__":
 
-    ZetaHealth().check()
+    result = ZetaHealth().check()
+
+    print(result)
