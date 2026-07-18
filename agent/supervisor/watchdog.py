@@ -3,6 +3,7 @@ import datetime
 import os
 import sys
 
+
 # Ensure ZETA root is available
 BASE_DIR = os.path.expanduser("~/cyprus")
 
@@ -11,6 +12,7 @@ if BASE_DIR not in sys.path:
 
 
 from agent.supervisor.health import ZetaHealth
+from agent.supervisor.recovery import ZetaRecovery
 
 
 class ZetaWatchdog:
@@ -42,6 +44,8 @@ class ZetaWatchdog:
         )
 
         health = ZetaHealth()
+        recovery = ZetaRecovery()
+
 
         while True:
 
@@ -49,13 +53,39 @@ class ZetaWatchdog:
                 "Running health check"
             )
 
-            health.check()
 
-            self.write(
-                "Health check completed"
-            )
+            try:
+
+                result = health.check()
+
+
+                if result is False:
+
+                    self.write(
+                        "Health failure detected"
+                    )
+
+                    recovery.check()
+
+
+                else:
+
+                    self.write(
+                        "Health check completed"
+                    )
+
+
+            except Exception as e:
+
+                self.write(
+                    f"Health check error: {e}"
+                )
+
+                recovery.check()
+
 
             time.sleep(300)
+
 
 
 if __name__ == "__main__":
