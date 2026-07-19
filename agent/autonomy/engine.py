@@ -1,117 +1,39 @@
-import json
-import os
-import time
 from datetime import datetime
 
-
-UPGRADE_FILE = "data/upgrades.json"
-
-
-class AutonomyEngine:
-
-    def __init__(self):
-        self.running = False
-
-        os.makedirs("data", exist_ok=True)
-
-        if not os.path.exists(UPGRADE_FILE):
-            self.create_file()
+from agent.autonomy.status import get_status
+from agent.autonomy.planner import generate_plan
 
 
-    def create_file(self):
+def run_engine():
 
-        data = {
-            "ideas": [],
-            "completed": []
-        }
-
-        with open(UPGRADE_FILE, "w") as f:
-            json.dump(data, f, indent=2)
+    print("\nZETA AUTONOMY ENGINE\n")
 
 
-    def load(self):
+    print("SYSTEM INSPECTION:")
 
-        with open(UPGRADE_FILE, "r") as f:
-            return json.load(f)
+    status = get_status()
 
-
-    def save(self, data):
-
-        with open(UPGRADE_FILE, "w") as f:
-            json.dump(data, f, indent=2)
-
-
-    def add_upgrade(self, idea):
-
-        data = self.load()
-
-        existing = [
-            x["idea"]
-            for x in data["ideas"]
-        ]
-
-        completed = [
-            x["idea"]
-            for x in data["completed"]
-        ]
+    print({
+        "time": status["time"],
+        "user": status["user"],
+        "projects": status["projects"],
+        "goals": status["goals"],
+        "tasks": status["tasks"]
+    })
 
 
-        if idea in existing or idea in completed:
-            return
+    print("\nTHOUGHT PROCESS:")
 
+    plans = generate_plan()
 
-        data["ideas"].append(
-            {
-                "time": str(datetime.now()),
-                "idea": idea,
-                "status": "pending"
-            }
-        )
+    for plan in plans:
 
-        self.save(data)
-
-
-    def think(self):
-
-        upgrades = [
-
-            "Improve memory recall system",
-            "Add project management skills",
-            "Add calendar integration",
-            "Improve conversation history",
-            "Create web research module"
-
-        ]
-
-
-        for upgrade in upgrades:
-            self.add_upgrade(upgrade)
-
-
-
-    def heartbeat(self):
-
-        print("[ZETA] autonomy thinking...")
-
-        self.think()
-
-
-    def start(self):
-
-        self.running = True
-
-        print("ZETA Autonomy Engine Started")
-
-
-        while self.running:
-
-            self.heartbeat()
-
-            time.sleep(300)
-
+        print({
+            "type": plan["type"],
+            "action": plan["next_action"],
+            "created": datetime.now().isoformat()
+        })
 
 
 if __name__ == "__main__":
-
-    engine = AutonomyEngine()
-    engine.start()
+    run_engine()
