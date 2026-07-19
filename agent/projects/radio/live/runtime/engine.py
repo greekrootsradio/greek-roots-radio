@@ -1,28 +1,29 @@
 from datetime import datetime
 
-from agent.projects.radio.live.controller import create_live_broadcast
+from agent.projects.radio.brain.station_brain import station_decision
 
 
 def start_runtime():
 
-    broadcast = create_live_broadcast()
+    brain = station_decision()
 
     runtime = {
 
-        "engine": "ZETA Radio Runtime Engine",
+        "engine": "ZETA Intelligent Radio Runtime",
 
-        "station": broadcast["station"],
+        "station": "Greek Roots Radio",
 
         "started": datetime.now().isoformat(),
 
-        "show": broadcast["producer"]["show"],
+        "brain": brain,
 
-        "presenter": broadcast["presenter"]["presenter"],
+        "show": brain["show"],
 
-        "next_track":
-            broadcast["music"]["selected_tracks"][0]["title"],
+        "mood": brain["mood"],
 
-        "status": "RADIO_RUNTIME_ACTIVE"
+        "presenter": "ZETA AI",
+
+        "status": "INTELLIGENT_RUNTIME_ACTIVE"
 
     }
 
@@ -31,6 +32,4 @@ def start_runtime():
 
 if __name__ == "__main__":
 
-    session = start_runtime()
-
-    print(session)
+    print(start_runtime())
