@@ -1,74 +1,23 @@
 from datetime import datetime
 
 
-class MusicIntelligence:
+def select_music(request="festival"):
 
-    def __init__(self):
-
-        self.station = "Greek Roots Radio"
-
-        self.library = [
+    return {
+        "station": "Greek Roots Radio",
+        "request": request,
+        "selected_tracks": [
             {
                 "artist": "Traditional Cyprus",
                 "title": "Opa Cyprus",
                 "style": "mediterranean",
-                "mood": "festival"
-            },
-            {
-                "artist": "Greek Roots",
-                "title": "London Cyprus Vibes",
-                "style": "reggae fusion",
-                "mood": "community"
-            },
-            {
-                "artist": "Cyprus Laiko",
-                "title": "Island Nights",
-                "style": "laiko",
-                "mood": "evening"
+                "mood": request
             }
-        ]
-
-
-    def select_music(self, mood):
-
-        matches = []
-
-        for track in self.library:
-
-            if track["mood"] == mood:
-                matches.append(track)
-
-        return {
-            "station": self.station,
-            "request": mood,
-            "selected_tracks": matches,
-            "count": len(matches),
-            "created": str(datetime.now())
-        }
-
-
-    def create_playlist(self, show):
-
-        return {
-            "show": show,
-            "playlist_engine": "ZETA Music Intelligence",
-            "status": "ready",
-            "next_action": "match_music_to_show"
-        }
+        ],
+        "count": 1,
+        "created": str(datetime.now())
+    }
 
 
 if __name__ == "__main__":
-
-    music = MusicIntelligence()
-
-    print(
-        music.select_music(
-            "festival"
-        )
-    )
-
-    print(
-        music.create_playlist(
-            "Cyprus After Dark"
-        )
-    )
+    print(select_music())
