@@ -1,49 +1,57 @@
 from datetime import datetime
 
-from agent.projects.radio.intelligence.scheduler import create_schedule
-from agent.projects.radio.music.intelligence.selector import select_music
-from agent.projects.radio.voice.voice_engine import create_voice_intro
 from agent.projects.radio.producer.show_brain import create_show_plan
 from agent.projects.radio.director.broadcast_director import create_broadcast_decision
+from agent.projects.radio.music.intelligence.selector import select_music
+from agent.projects.radio.voice.voice_engine import create_voice_intro
+from agent.projects.radio.presenter.conversation import create_transition
 
 
 def create_live_broadcast():
 
-    # Get today's radio schedule
-    schedule = create_schedule()
+    station = "Greek Roots Radio"
 
-    show = schedule["schedule"][0]
+    show = "Morning Cyprus London"
+    mood = "sunrise Mediterranean"
+    audience = "Greek Cypriots growing up in the UK"
 
-    # Select music for the current mood
-    music = select_music("festival")
-
-    # Generate presenter intro
-    presenter = create_voice_intro()
-
-    # Create producer show plan
     producer = create_show_plan(
-        show["show"],
-        show["mood"],
-        "Greek Cypriots growing up in the UK"
+        show,
+        mood,
+        audience
     )
 
-    # Broadcast director decisions
-    director = create_broadcast_decision()
+    music = select_music(
+        "festival"
+    )
+
+    track_style = music["selected_tracks"][0]["style"]
+
+    director = create_broadcast_decision(
+        show,
+        track_style,
+        mood
+    )
+
+    voice = create_voice_intro(
+        show
+    )
+
+    presenter = create_transition(
+        "Mia Fora",
+        "Opa Cyprus"
+    )
 
     return {
         "engine": "ZETA Live Broadcast Controller",
-        "station": "Greek Roots Radio",
-        "time": str(datetime.now()),
-
-        "show": show,
-
-        "music": music,
-
-        "presenter": presenter,
+        "station": station,
+        "time": datetime.now().isoformat(),
 
         "producer": producer,
-
+        "music": music,
         "director": director,
+        "voice": voice,
+        "presenter": presenter,
 
         "status": "LIVE_BROADCAST_READY"
     }
