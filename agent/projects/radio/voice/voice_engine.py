@@ -1,52 +1,36 @@
 from datetime import datetime
 
 
-class ZetaVoiceEngine:
+def create_voice_intro(
+    show="Morning Cyprus London"
+):
 
-    def __init__(self):
-
-        self.station = "Greek Roots Radio"
-        self.presenter = "ZETA AI"
-        self.voice_state = "not_connected"
-
-
-    def create_intro(self, show):
-
-        return {
-            "station": self.station,
-            "presenter": self.presenter,
-            "show": show,
-            "intro": f"Welcome to {show} on Greek Roots Radio with ZETA AI",
-            "style": [
-                "Greek Cypriot warmth",
-                "London community energy",
-                "Mediterranean fusion"
-            ],
-            "voice": self.voice_state,
-            "created": str(datetime.now())
-        }
-
-
-    def prepare_voice_job(self):
-
-        return {
-            "engine": "ZETA Voice Presenter",
-            "status": "ready_for_voice_provider",
-            "presenter": self.presenter,
-            "next": "generate_live_intro"
-        }
+    return {
+        "station": "Greek Roots Radio",
+        "presenter": "ZETA AI",
+        "show": show,
+        "intro": f"Welcome to {show} on Greek Roots Radio with ZETA AI",
+        "style": [
+            "Greek Cypriot warmth",
+            "London community energy",
+            "Mediterranean fusion"
+        ],
+        "voice": "not_connected",
+        "created": str(datetime.now())
+    }
 
 
 if __name__ == "__main__":
 
-    voice = ZetaVoiceEngine()
-
     print(
-        voice.create_intro(
-            "Morning Cyprus London"
-        )
+        create_voice_intro()
     )
 
     print(
-        voice.prepare_voice_job()
+        {
+            "engine": "ZETA Voice Presenter",
+            "status": "ready_for_voice_provider",
+            "presenter": "ZETA AI",
+            "next": "generate_live_intro"
+        }
     )
