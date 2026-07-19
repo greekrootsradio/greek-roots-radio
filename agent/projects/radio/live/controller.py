@@ -9,16 +9,25 @@ from agent.projects.radio.director.broadcast_director import create_broadcast_de
 
 def create_live_broadcast():
 
+    # Get today's radio schedule
     schedule = create_schedule()
 
     show = schedule["schedule"][0]
 
+    # Select music for the current mood
     music = select_music("festival")
 
+    # Generate presenter intro
     presenter = create_voice_intro()
 
-    producer = create_show_plan()
+    # Create producer show plan
+    producer = create_show_plan(
+        show["show"],
+        show["mood"],
+        "Greek Cypriots growing up in the UK"
+    )
 
+    # Broadcast director decisions
     director = create_broadcast_decision()
 
     return {
