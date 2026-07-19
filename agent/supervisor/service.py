@@ -11,6 +11,8 @@ if BASE_DIR not in sys.path:
 
 
 from agent.supervisor.controller import ZetaSupervisorController
+from agent.executive.brain import ExecutiveBrain
+from agent.executive.action import ExecutiveAction
 
 
 class ZetaSupervisorService:
@@ -29,13 +31,20 @@ class ZetaSupervisorService:
 
         self.controller = ZetaSupervisorController()
 
+        self.executive = ExecutiveBrain()
+
+        self.action = ExecutiveAction()
+
+
 
     def write(self, message):
 
         with open(self.log, "a") as f:
+
             f.write(
                 f"{datetime.datetime.now()} {message}\n"
             )
+
 
 
     def start(self):
@@ -45,31 +54,50 @@ class ZetaSupervisorService:
         )
 
 
-        try:
+        while True:
 
-            while True:
+            try:
 
                 self.write(
                     "Running supervisor cycle"
                 )
 
 
-                result = self.controller.run_once()
+                health = self.controller.run_once()
 
 
                 self.write(
-                    f"Supervisor result: {result}"
+                    f"Supervisor result: {health}"
                 )
 
 
-                time.sleep(30)
+                goal = self.executive.think()
 
 
-        except KeyboardInterrupt:
+                self.write(
+                    f"Executive goal: {goal}"
+                )
 
-            self.write(
-                "===== ZETA SUPERVISOR SERVICE STOPPED ====="
-            )
+
+                result = self.action.execute(
+                    goal
+                )
+
+
+                self.write(
+                    f"Executive action result: {result}"
+                )
+
+
+            except Exception as e:
+
+                self.write(
+                    f"SERVICE ERROR: {e}"
+                )
+
+
+            time.sleep(30)
+
 
 
 if __name__ == "__main__":
