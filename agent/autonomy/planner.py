@@ -2,46 +2,84 @@ from agent.memory import get_memory
 from datetime import datetime
 
 
+class PlannerAgent:
+
+
+    def __init__(self):
+
+        self.name = "ZETA Planner Agent"
+
+
+
+    def generate_plan(self):
+
+        memory = get_memory()
+
+
+        goals = memory.get(
+            "goals",
+            []
+        )
+
+
+        projects = memory.get(
+            "projects",
+            {}
+        )
+
+
+        if goals:
+
+            return {
+
+                "module": "goal_manager",
+
+                "purpose": goals[0],
+
+                "created": str(datetime.now())
+
+            }
+
+
+        if projects:
+
+            project = list(projects.keys())[0]
+
+            return {
+
+                "module": "project_manager",
+
+                "purpose": project,
+
+                "created": str(datetime.now())
+
+            }
+
+
+        return {
+
+            "module": "system_improvement",
+
+            "purpose": "Improve ZETA autonomous maintenance system",
+
+            "created": str(datetime.now())
+
+        }
+
+
+
 def generate_plan():
 
-    memory = get_memory()
+    planner = PlannerAgent()
 
-    plans = []
+    return planner.generate_plan()
 
-    goals = memory.get("goals", [])
-
-    for goal in goals:
-
-        plans.append({
-            "type": "goal",
-            "goal": goal,
-            "next_action": "Analyse requirements and create task list"
-        })
-
-
-    projects = memory.get("projects", {})
-
-    for project in projects:
-
-        plans.append({
-            "type": "project",
-            "project": project,
-            "next_action": "Review project status and identify improvements"
-        })
-
-
-    return plans
-
-
-def main():
-
-    print("ZETA PLANNER")
-
-    plans = generate_plan()
-
-    for plan in plans:
-        print(plan)
 
 
 if __name__ == "__main__":
-    main()
+
+    planner = PlannerAgent()
+
+    print(
+        planner.generate_plan()
+    )

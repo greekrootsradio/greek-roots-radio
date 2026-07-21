@@ -76,7 +76,7 @@ class ZetaSupervisor:
         )
 
 
-        self.development.run()
+        development_result = self.development.run()
 
 
 
@@ -91,6 +91,8 @@ class ZetaSupervisor:
                 "inspection": inspection,
 
                 "worker": worker_result,
+
+                "development": development_result,
 
                 "result": "completed"
             }
@@ -109,7 +111,19 @@ class ZetaSupervisor:
 
             "worker": worker_result,
 
+            "development": development_result,
+
             "experience":
                 self.experience.summarize()
 
         }
+
+
+
+if __name__ == "__main__":
+
+    supervisor = ZetaSupervisor()
+
+    result = supervisor.run_cycle()
+
+    print(result)
