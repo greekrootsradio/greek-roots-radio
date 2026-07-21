@@ -5,9 +5,11 @@ from agent.memory import get_memory
 
 class PlannerAgent:
 
+
     def __init__(self):
 
         self.name = "ZETA Planner Agent"
+
 
 
     def generate_plan(self, decision=None):
@@ -15,19 +17,26 @@ class PlannerAgent:
         memory = get_memory()
 
 
-        # Use executive decision first
+        # ---------------------------------
+        # USE DECISION ENGINE OUTPUT FIRST
+        # ---------------------------------
 
         if decision:
 
-            chosen_goal = decision.get(
-                "chosen_goal"
-            )
+            chosen_goal = None
+
+
+            if "decision" in decision:
+
+                chosen_goal = decision["decision"].get(
+                    "chosen_goal"
+                )
 
 
             if chosen_goal:
 
                 print(
-                    "[ZETA PLANNER] Using executive goal:",
+                    "[ZETA PLANNER] Using executive decision:",
                     chosen_goal
                 )
 
@@ -40,11 +49,6 @@ class PlannerAgent:
                         "Execute selected autonomy goal"
                     ),
 
-                    "priority": decision.get(
-                        "score",
-                        50
-                    ),
-
                     "created": str(
                         datetime.now()
                     )
@@ -52,7 +56,10 @@ class PlannerAgent:
                 }
 
 
-        # Fallback memory goals
+
+        # ---------------------------------
+        # FALL BACK TO MEMORY GOALS
+        # ---------------------------------
 
         goals = memory.get(
             "goals",
@@ -60,7 +67,19 @@ class PlannerAgent:
         )
 
 
+        projects = memory.get(
+            "projects",
+            {}
+        )
+
+
         if goals:
+
+            print(
+                "[ZETA PLANNER] Using memory goal:",
+                goals[0]
+            )
+
 
             return {
 
@@ -68,13 +87,52 @@ class PlannerAgent:
 
                 "purpose": goals[0],
 
-                "priority": 50,
+                "created": str(
+                    datetime.now()
+                )
+
+            }
+
+
+
+        # ---------------------------------
+        # PROJECT PLANNING
+        # ---------------------------------
+
+        if projects:
+
+            project = list(
+                projects.keys()
+            )[0]
+
+
+            print(
+                "[ZETA PLANNER] Using project:",
+                project
+            )
+
+
+            return {
+
+                "module": "project_manager",
+
+                "purpose": project,
 
                 "created": str(
                     datetime.now()
                 )
 
             }
+
+
+
+        # ---------------------------------
+        # DEFAULT SELF IMPROVEMENT
+        # ---------------------------------
+
+        print(
+            "[ZETA PLANNER] No goal found - system improvement"
+        )
 
 
         return {
@@ -84,8 +142,6 @@ class PlannerAgent:
             "purpose": (
                 "Improve ZETA autonomous maintenance system"
             ),
-
-            "priority": 10,
 
             "created": str(
                 datetime.now()
@@ -102,6 +158,7 @@ def generate_plan(decision=None):
     return planner.generate_plan(
         decision
     )
+
 
 
 if __name__ == "__main__":

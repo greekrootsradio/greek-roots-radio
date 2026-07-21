@@ -421,5 +421,81 @@
         "development": null,
         "result": "completed",
         "time": "2026-07-21 06:35:11.798461"
+    },
+    {
+        "module": "executive_engine",
+        "result": "goal_decomposed",
+        "time": "2026-07-21 20:22:18.154828"
+    },
+    {
+        "module": "executive_engine",
+        "result": "decision_complete",
+        "time": "2026-07-21 21:31:10.949838"
+    },
+    {
+        "module": "executive_engine",
+        "result": "decision_complete",
+        "time": "2026-07-21 21:38:03.061168"
+    },
+    {
+        "decision": {
+            "chosen_goal": "Build permanent memory system",
+            "score": 170,
+            "projects": [
+                "Greek Roots Radio"
+            ],
+            "user_goals": [
+                "to make ZETA autonomous"
+            ],
+            "reason": "selected using autonomy priority model",
+            "time": "2026-07-21 21:42:37.897642"
+        },
+        "plan": {
+            "module": "Build permanent memory system",
+            "purpose": "Execute selected autonomy goal",
+            "priority": 170,
+            "created": "2026-07-21 21:42:37.898273"
+        },
+        "task": {
+            "task": {
+                "module": "Build permanent memory system",
+                "purpose": "Execute selected autonomy goal",
+                "priority": 170,
+                "created": "2026-07-21 21:42:37.898273"
+            },
+            "priority": 50,
+            "status": "active",
+            "created": "2026-07-21 21:42:37.898292"
+        },
+        "result": "passed",
+        "time": "2026-07-21 21:42:37.900437"
+    },
+    {
+        "decision": {
+            "chosen_goal": "Build permanent memory system",
+            "score": 170,
+            "projects": [
+                "Greek Roots Radio"
+            ],
+            "user_goals": [
+                "to make ZETA autonomous"
+            ],
+            "reason": "selected using autonomy priority model",
+            "time": "2026-07-21 21:46:09.341280"
+        },
+        "plan": {
+            "module": "Build permanent memory system",
+            "purpose": "Execute selected autonomy goal",
+            "priority": 170,
+            "created": "2026-07-21 21:46:09.341535"
+        },
+        "task": {
+            "task": "Build permanent memory system",
+            "priority": 170,
+            "status": "active",
+            "created": "2026-07-21 21:46:09.341544"
+        },
+        "result": "created",
+        "time": "2026-07-21 21:46:09.342356"
     }
 ]

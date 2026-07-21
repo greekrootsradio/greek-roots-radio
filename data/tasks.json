@@ -35,6 +35,65 @@
             "priority": 60,
             "status": "active",
             "created": "2026-07-17 21:39:31.342716"
+        },
+        {
+            "task": "Research goal_manager",
+            "priority": 50,
+            "status": "active",
+            "created": "2026-07-21 20:22:18.143517"
+        },
+        {
+            "task": "Design goal_manager",
+            "priority": 40,
+            "status": "active",
+            "created": "2026-07-21 20:22:18.151752"
+        },
+        {
+            "task": "Build goal_manager",
+            "priority": 30,
+            "status": "active",
+            "created": "2026-07-21 20:22:18.152774"
+        },
+        {
+            "task": "Test goal_manager",
+            "priority": 20,
+            "status": "active",
+            "created": "2026-07-21 20:22:18.153471"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "active",
+            "created": "2026-07-21 21:31:10.947181"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "active",
+            "created": "2026-07-21 21:34:44.866769"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "active",
+            "created": "2026-07-21 21:38:03.059420"
+        },
+        {
+            "task": {
+                "module": "Build permanent memory system",
+                "purpose": "Execute selected autonomy goal",
+                "priority": 170,
+                "created": "2026-07-21 21:42:37.898273"
+            },
+            "priority": 50,
+            "status": "active",
+            "created": "2026-07-21 21:42:37.898292"
+        },
+        {
+            "task": "Build permanent memory system",
+            "priority": 170,
+            "status": "active",
+            "created": "2026-07-21 21:46:09.341544"
         }
     ],
     "completed": [

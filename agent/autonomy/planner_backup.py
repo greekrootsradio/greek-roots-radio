@@ -5,9 +5,11 @@ from agent.memory import get_memory
 
 class PlannerAgent:
 
+
     def __init__(self):
 
         self.name = "ZETA Planner Agent"
+
 
 
     def generate_plan(self, decision=None):
@@ -15,22 +17,17 @@ class PlannerAgent:
         memory = get_memory()
 
 
-        # Use executive decision first
-
         if decision:
 
             chosen_goal = decision.get(
+                "decision",
+                {}
+            ).get(
                 "chosen_goal"
             )
 
 
             if chosen_goal:
-
-                print(
-                    "[ZETA PLANNER] Using executive goal:",
-                    chosen_goal
-                )
-
 
                 return {
 
@@ -40,11 +37,6 @@ class PlannerAgent:
                         "Execute selected autonomy goal"
                     ),
 
-                    "priority": decision.get(
-                        "score",
-                        50
-                    ),
-
                     "created": str(
                         datetime.now()
                     )
@@ -52,11 +44,16 @@ class PlannerAgent:
                 }
 
 
-        # Fallback memory goals
 
         goals = memory.get(
             "goals",
             []
+        )
+
+
+        projects = memory.get(
+            "projects",
+            {}
         )
 
 
@@ -68,7 +65,25 @@ class PlannerAgent:
 
                 "purpose": goals[0],
 
-                "priority": 50,
+                "created": str(
+                    datetime.now()
+                )
+
+            }
+
+
+        if projects:
+
+            project = list(
+                projects.keys()
+            )[0]
+
+
+            return {
+
+                "module": "project_manager",
+
+                "purpose": project,
 
                 "created": str(
                     datetime.now()
@@ -85,8 +100,6 @@ class PlannerAgent:
                 "Improve ZETA autonomous maintenance system"
             ),
 
-            "priority": 10,
-
             "created": str(
                 datetime.now()
             )
@@ -102,6 +115,7 @@ def generate_plan(decision=None):
     return planner.generate_plan(
         decision
     )
+
 
 
 if __name__ == "__main__":

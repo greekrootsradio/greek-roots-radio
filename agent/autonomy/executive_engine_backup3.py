@@ -28,17 +28,33 @@ class ExecutiveEngine:
         )
 
 
-        # -------------------------
-        # MAKE DECISION
-        # -------------------------
+        # -------------------------------
+        # 1. MAKE DECISION
+        # -------------------------------
 
-        decision = self.decision.choose_priority()
+        decision_result = self.decision.choose_priority()
+
+
+        # DecisionEngine returns:
+        #
+        # {
+        #   "decision": {
+        #       "chosen_goal": "...",
+        #       "score": ...
+        #   }
+        # }
+
+
+        decision = decision_result.get(
+            "decision",
+            {}
+        )
 
 
 
-        # -------------------------
-        # CREATE PLAN
-        # -------------------------
+        # -------------------------------
+        # 2. CREATE PLAN
+        # -------------------------------
 
         plan = self.planner.generate_plan(
             decision
@@ -46,38 +62,34 @@ class ExecutiveEngine:
 
 
 
-        # -------------------------
-        # CREATE TASK
-        # -------------------------
+        # -------------------------------
+        # 3. CREATE TASK
+        # -------------------------------
 
         task = self.tasks.create_task(
-            plan["module"],
+            plan.get(
+                "module"
+            ),
             plan.get(
                 "priority",
-                50
+                0
             )
         )
 
 
 
-        # -------------------------
-        # RECORD EXPERIENCE
-        # -------------------------
+        # -------------------------------
+        # 4. RECORD EXPERIENCE
+        # -------------------------------
 
-        self.experience.record_cycle(
-
+        self.experience.record(
             {
-
                 "decision": decision,
 
                 "plan": plan,
 
-                "task": task,
-
-                "result": "created"
-
+                "task": task
             }
-
         )
 
 
@@ -99,13 +111,13 @@ class ExecutiveEngine:
         }
 
 
-
         print(
             "[ZETA EXECUTIVE] Decision complete"
         )
 
 
         return result
+
 
 
 
