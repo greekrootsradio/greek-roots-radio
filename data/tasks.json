@@ -1,41 +1,6 @@
 {
     "active": [
         {
-            "task": "goal_manager",
-            "priority": 50,
-            "status": "active",
-            "created": "2026-07-21 21:34:44.866769"
-        },
-        {
-            "task": "goal_manager",
-            "priority": 50,
-            "status": "active",
-            "created": "2026-07-21 21:38:03.059420"
-        },
-        {
-            "task": {
-                "module": "Build permanent memory system",
-                "purpose": "Execute selected autonomy goal",
-                "priority": 170,
-                "created": "2026-07-21 21:42:37.898273"
-            },
-            "priority": 50,
-            "status": "active",
-            "created": "2026-07-21 21:42:37.898292"
-        },
-        {
-            "task": "Design goal_manager",
-            "priority": 40,
-            "status": "active",
-            "created": "2026-07-21 20:22:18.151752"
-        },
-        {
-            "task": "Build goal_manager",
-            "priority": 30,
-            "status": "active",
-            "created": "2026-07-21 20:22:18.152774"
-        },
-        {
             "task": "Test goal_manager",
             "priority": 20,
             "status": "active",
@@ -126,6 +91,46 @@
             "status": "completed",
             "created": "2026-07-21 21:31:10.947181",
             "completed": "2026-07-22 21:55:36.041131"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:34:44.866769",
+            "completed": "2026-07-22 22:00:36.155833"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:38:03.059420",
+            "completed": "2026-07-22 22:05:36.256989"
+        },
+        {
+            "task": {
+                "module": "Build permanent memory system",
+                "purpose": "Execute selected autonomy goal",
+                "priority": 170,
+                "created": "2026-07-21 21:42:37.898273"
+            },
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:42:37.898292",
+            "completed": "2026-07-22 22:10:36.302860"
+        },
+        {
+            "task": "Design goal_manager",
+            "priority": 40,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.151752",
+            "completed": "2026-07-22 22:15:36.356682"
+        },
+        {
+            "task": "Build goal_manager",
+            "priority": 30,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.152774",
+            "completed": "2026-07-22 22:20:36.385906"
         }
     ],
     "history": [
@@ -212,6 +217,46 @@
             "status": "completed",
             "created": "2026-07-21 21:31:10.947181",
             "completed": "2026-07-22 21:55:36.041131"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:34:44.866769",
+            "completed": "2026-07-22 22:00:36.155833"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:38:03.059420",
+            "completed": "2026-07-22 22:05:36.256989"
+        },
+        {
+            "task": {
+                "module": "Build permanent memory system",
+                "purpose": "Execute selected autonomy goal",
+                "priority": 170,
+                "created": "2026-07-21 21:42:37.898273"
+            },
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:42:37.898292",
+            "completed": "2026-07-22 22:10:36.302860"
+        },
+        {
+            "task": "Design goal_manager",
+            "priority": 40,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.151752",
+            "completed": "2026-07-22 22:15:36.356682"
+        },
+        {
+            "task": "Build goal_manager",
+            "priority": 30,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.152774",
+            "completed": "2026-07-22 22:20:36.385906"
         }
     ]
 }
