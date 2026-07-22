@@ -101,6 +101,14 @@
     {
       "user": "What do you know about my music?",
       "zeta": "Music! I have a good understanding of your musical tastes, Andreas. According to our previous conversations and the data I've collected, it seems that you're particularly fond of Greek reggae fusion music. You've mentioned artists like Vangelis, Mikis Theodorakis, and of course, the legendary Yanni. Your playlists are also filled with a mix of traditional Greek music and modern reggae influences.\n\nI recall that we discussed the idea of incorporating some of your favorite Greek songs into an upcoming project for Greek Roots Radio. Would you like to revisit that idea or explore other creative directions for the show?"
+    },
+    {
+      "user": "Hello ZETA, tell me your current status",
+      "assistant": "Hi Andreas! I'm functioning within normal parameters at the moment. My last update was on July 19th, 2026, and my autonomy cycle was completed successfully. I've been going over some tasks for you, including reviewing the status of your project, \"Greek Roots Radio\". How can I assist you today?"
+    },
+    {
+      "user": "Hello ZETA, tell me your current status",
+      "assistant": "Hi Andreas! I'm functioning within normal parameters at the moment. My last update was on July 19th, 2026, and my autonomy cycle was completed successfully. I've been going over some tasks for you, including reviewing the status of your project, \"Greek Roots Radio\". How can I assist you today?"
     }
   ]
 }

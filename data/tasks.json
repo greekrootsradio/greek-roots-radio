@@ -1,72 +1,6 @@
 {
     "active": [
         {
-            "task": "Build permanent memory system",
-            "priority": 100,
-            "status": "active",
-            "created": "2026-07-17 21:15:49.018848"
-        },
-        {
-            "task": "Design memory architecture",
-            "priority": 100,
-            "status": "active",
-            "created": "2026-07-17 21:39:31.341883"
-        },
-        {
-            "task": "Create memory storage module",
-            "priority": 90,
-            "status": "active",
-            "created": "2026-07-17 21:39:31.342141"
-        },
-        {
-            "task": "Create memory retrieval system",
-            "priority": 80,
-            "status": "active",
-            "created": "2026-07-17 21:39:31.342306"
-        },
-        {
-            "task": "Add memory indexing",
-            "priority": 70,
-            "status": "active",
-            "created": "2026-07-17 21:39:31.342483"
-        },
-        {
-            "task": "Test permanent memory persistence",
-            "priority": 60,
-            "status": "active",
-            "created": "2026-07-17 21:39:31.342716"
-        },
-        {
-            "task": "Research goal_manager",
-            "priority": 50,
-            "status": "active",
-            "created": "2026-07-21 20:22:18.143517"
-        },
-        {
-            "task": "Design goal_manager",
-            "priority": 40,
-            "status": "active",
-            "created": "2026-07-21 20:22:18.151752"
-        },
-        {
-            "task": "Build goal_manager",
-            "priority": 30,
-            "status": "active",
-            "created": "2026-07-21 20:22:18.152774"
-        },
-        {
-            "task": "Test goal_manager",
-            "priority": 20,
-            "status": "active",
-            "created": "2026-07-21 20:22:18.153471"
-        },
-        {
-            "task": "goal_manager",
-            "priority": 50,
-            "status": "active",
-            "created": "2026-07-21 21:31:10.947181"
-        },
-        {
             "task": "goal_manager",
             "priority": 50,
             "status": "active",
@@ -90,10 +24,22 @@
             "created": "2026-07-21 21:42:37.898292"
         },
         {
-            "task": "Build permanent memory system",
-            "priority": 170,
+            "task": "Design goal_manager",
+            "priority": 40,
             "status": "active",
-            "created": "2026-07-21 21:46:09.341544"
+            "created": "2026-07-21 20:22:18.151752"
+        },
+        {
+            "task": "Build goal_manager",
+            "priority": 30,
+            "status": "active",
+            "created": "2026-07-21 20:22:18.152774"
+        },
+        {
+            "task": "Test goal_manager",
+            "priority": 20,
+            "status": "active",
+            "created": "2026-07-21 20:22:18.153471"
         }
     ],
     "completed": [
@@ -117,6 +63,69 @@
             "status": "completed",
             "created": "2026-07-17 21:15:14.303140",
             "completed": "2026-07-17 22:13:30.648591"
+        },
+        {
+            "task": "Build permanent memory system",
+            "priority": 170,
+            "status": "completed",
+            "created": "2026-07-21 21:46:09.341544",
+            "completed": "2026-07-21 21:51:50.318759"
+        },
+        {
+            "task": "Build permanent memory system",
+            "priority": 100,
+            "status": "completed",
+            "created": "2026-07-17 21:15:49.018848",
+            "completed": "2026-07-22 21:22:26.147554"
+        },
+        {
+            "task": "Design memory architecture",
+            "priority": 100,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.341883",
+            "completed": "2026-07-22 21:27:26.161236"
+        },
+        {
+            "task": "Create memory storage module",
+            "priority": 90,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342141",
+            "completed": "2026-07-22 21:30:35.612911"
+        },
+        {
+            "task": "Create memory retrieval system",
+            "priority": 80,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342306",
+            "completed": "2026-07-22 21:35:35.682969"
+        },
+        {
+            "task": "Add memory indexing",
+            "priority": 70,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342483",
+            "completed": "2026-07-22 21:40:35.784982"
+        },
+        {
+            "task": "Test permanent memory persistence",
+            "priority": 60,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342716",
+            "completed": "2026-07-22 21:45:35.885025"
+        },
+        {
+            "task": "Research goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.143517",
+            "completed": "2026-07-22 21:50:36.008580"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:31:10.947181",
+            "completed": "2026-07-22 21:55:36.041131"
         }
     ],
     "history": [
@@ -140,6 +149,69 @@
             "status": "completed",
             "created": "2026-07-17 21:15:14.303140",
             "completed": "2026-07-17 22:13:30.648591"
+        },
+        {
+            "task": "Build permanent memory system",
+            "priority": 170,
+            "status": "completed",
+            "created": "2026-07-21 21:46:09.341544",
+            "completed": "2026-07-21 21:51:50.318759"
+        },
+        {
+            "task": "Build permanent memory system",
+            "priority": 100,
+            "status": "completed",
+            "created": "2026-07-17 21:15:49.018848",
+            "completed": "2026-07-22 21:22:26.147554"
+        },
+        {
+            "task": "Design memory architecture",
+            "priority": 100,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.341883",
+            "completed": "2026-07-22 21:27:26.161236"
+        },
+        {
+            "task": "Create memory storage module",
+            "priority": 90,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342141",
+            "completed": "2026-07-22 21:30:35.612911"
+        },
+        {
+            "task": "Create memory retrieval system",
+            "priority": 80,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342306",
+            "completed": "2026-07-22 21:35:35.682969"
+        },
+        {
+            "task": "Add memory indexing",
+            "priority": 70,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342483",
+            "completed": "2026-07-22 21:40:35.784982"
+        },
+        {
+            "task": "Test permanent memory persistence",
+            "priority": 60,
+            "status": "completed",
+            "created": "2026-07-17 21:39:31.342716",
+            "completed": "2026-07-22 21:45:35.885025"
+        },
+        {
+            "task": "Research goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.143517",
+            "completed": "2026-07-22 21:50:36.008580"
+        },
+        {
+            "task": "goal_manager",
+            "priority": 50,
+            "status": "completed",
+            "created": "2026-07-21 21:31:10.947181",
+            "completed": "2026-07-22 21:55:36.041131"
         }
     ]
 }

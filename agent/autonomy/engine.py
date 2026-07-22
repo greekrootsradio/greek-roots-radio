@@ -1,39 +1,49 @@
+import time
 from datetime import datetime
 
-from agent.autonomy.status import get_status
-from agent.autonomy.planner import generate_plan
+from agent.autonomy.supervisor import ZetaSupervisor
 
 
-def run_engine():
+class AutonomyEngine:
 
-    print("\nZETA AUTONOMY ENGINE\n")
+    def __init__(self, sleep_seconds=300):
 
+        self.sleep_seconds = sleep_seconds
+        self.supervisor = ZetaSupervisor()
 
-    print("SYSTEM INSPECTION:")
+        self.running = False
 
-    status = get_status()
+    def start(self):
 
-    print({
-        "time": status["time"],
-        "user": status["user"],
-        "projects": status["projects"],
-        "goals": status["goals"],
-        "tasks": status["tasks"]
-    })
+        self.running = True
 
+        print("[ZETA ENGINE] Online")
 
-    print("\nTHOUGHT PROCESS:")
+        while self.running:
 
-    plans = generate_plan()
+            try:
 
-    for plan in plans:
+                self.supervisor.run_cycle()
 
-        print({
-            "type": plan["type"],
-            "action": plan["next_action"],
-            "created": datetime.now().isoformat()
-        })
+            except Exception as e:
+
+                print(f"[ZETA ENGINE] Error: {e}")
+
+            print(
+                f"[ZETA ENGINE] Sleeping {self.sleep_seconds} seconds"
+            )
+
+            time.sleep(self.sleep_seconds)
+
+    def stop(self):
+
+        self.running = False
+
+        print("[ZETA ENGINE] Stopped")
 
 
 if __name__ == "__main__":
-    run_engine()
+
+    engine = AutonomyEngine(sleep_seconds=10)
+
+    engine.start()
