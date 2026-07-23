@@ -15,6 +15,12 @@ class ZetaWorker:
 
 
 
+    def run(self):
+
+        return self.run_once()
+
+
+
     def run_once(self):
 
         print(
@@ -30,6 +36,7 @@ class ZetaWorker:
             print(
                 "[ZETA WORKER] No active tasks"
             )
+
 
             return {
 
@@ -115,8 +122,10 @@ class ZetaWorker:
 
 if __name__ == "__main__":
 
+
     worker = ZetaWorker()
 
+
     print(
-        worker.run_once()
+        worker.run()
     )
