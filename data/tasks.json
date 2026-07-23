@@ -1,12 +1,5 @@
 {
-    "active": [
-        {
-            "task": "Test goal_manager",
-            "priority": 20,
-            "status": "active",
-            "created": "2026-07-21 20:22:18.153471"
-        }
-    ],
+    "active": [],
     "completed": [
         {
             "task": "Build permanent memory system",
@@ -131,6 +124,13 @@
             "status": "completed",
             "created": "2026-07-21 20:22:18.152774",
             "completed": "2026-07-22 22:20:36.385906"
+        },
+        {
+            "task": "Test goal_manager",
+            "priority": 20,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.153471",
+            "completed": "2026-07-22 22:25:36.489874"
         }
     ],
     "history": [
@@ -257,6 +257,13 @@
             "status": "completed",
             "created": "2026-07-21 20:22:18.152774",
             "completed": "2026-07-22 22:20:36.385906"
+        },
+        {
+            "task": "Test goal_manager",
+            "priority": 20,
+            "status": "completed",
+            "created": "2026-07-21 20:22:18.153471",
+            "completed": "2026-07-22 22:25:36.489874"
         }
     ]
 }

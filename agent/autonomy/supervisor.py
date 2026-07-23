@@ -3,10 +3,10 @@ from agent.autonomy.self_inspector import SelfInspector
 from agent.autonomy.development_cycle import DevelopmentCycle
 from agent.autonomy.experience_engine import ExperienceEngine
 from agent.autonomy.worker import ZetaWorker
+from agent.autonomy.goal_orchestrator import GoalOrchestrator
 
 
 class ZetaSupervisor:
-
 
     def __init__(self):
 
@@ -20,7 +20,7 @@ class ZetaSupervisor:
 
         self.worker = ZetaWorker()
 
-
+        self.goal_orchestrator = GoalOrchestrator()
 
     def run_cycle(self):
 
@@ -28,12 +28,9 @@ class ZetaSupervisor:
             "[ZETA SUPERVISOR] Starting autonomous cycle"
         )
 
-
         self.logger.write(
             "Supervisor autonomous cycle started"
         )
-
-
 
         #
         # SYSTEM INSPECTION
@@ -43,16 +40,29 @@ class ZetaSupervisor:
             "[ZETA SUPERVISOR] Inspecting system"
         )
 
-
         inspection = self.inspector.inspect()
-
 
         print(
             "[ZETA INSPECTOR]",
             inspection
         )
 
+        #
+        # GOAL SELECTION
+        #
 
+        print(
+            "[ZETA SUPERVISOR] Selecting next goal"
+        )
+
+        goal = self.goal_orchestrator.choose_goal()
+
+        action = self.goal_orchestrator.create_action(goal)
+
+        print(
+            "[ZETA SUPERVISOR] Action:",
+            action
+        )
 
         #
         # TASK EXECUTION
@@ -62,10 +72,7 @@ class ZetaSupervisor:
             "[ZETA SUPERVISOR] Running worker"
         )
 
-
         worker_result = self.worker.run_once()
-
-
 
         #
         # DEVELOPMENT MAINTENANCE
@@ -75,10 +82,7 @@ class ZetaSupervisor:
             "[ZETA SUPERVISOR] Running development maintenance"
         )
 
-
         development_result = self.development.run()
-
-
 
         #
         # EXPERIENCE MEMORY
@@ -87,27 +91,26 @@ class ZetaSupervisor:
         self.experience.record_cycle(
             {
                 "module": "supervisor_cycle",
-
                 "inspection": inspection,
-
+                "goal": goal,
+                "action": action,
                 "worker": worker_result,
-
                 "development": development_result,
-
                 "result": "completed"
             }
         )
-
-
 
         print(
             "[ZETA SUPERVISOR] Cycle complete"
         )
 
-
         return {
 
             "inspection": inspection,
+
+            "goal": goal,
+
+            "action": action,
 
             "worker": worker_result,
 
@@ -117,7 +120,6 @@ class ZetaSupervisor:
                 self.experience.summarize()
 
         }
-
 
 
 if __name__ == "__main__":
