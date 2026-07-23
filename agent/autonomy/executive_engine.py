@@ -4,6 +4,7 @@ from agent.autonomy.decision_engine import DecisionEngine
 from agent.autonomy.experience_engine import ExperienceEngine
 from agent.autonomy.planner import PlannerAgent
 from agent.autonomy.task_manager import TaskManager
+from agent.autonomy.executive_review import ExecutiveReview
 
 
 class ExecutiveEngine:
@@ -18,6 +19,8 @@ class ExecutiveEngine:
         self.planner = PlannerAgent()
 
         self.tasks = TaskManager()
+
+        self.review = ExecutiveReview()
 
 
 
@@ -97,6 +100,19 @@ class ExecutiveEngine:
             "status": "ready"
 
         }
+
+
+
+        # -------------------------
+        # EXECUTIVE REFLECTION
+        # -------------------------
+
+        review = self.review.review_cycle(
+            result
+        )
+
+
+        result["review"] = review
 
 
 
