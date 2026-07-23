@@ -6,7 +6,6 @@ from agent.autonomy.developer_agent import DeveloperAgent
 
 class ZetaWorker:
 
-
     def __init__(self):
 
         self.tasks = TaskManager()
@@ -27,16 +26,16 @@ class ZetaWorker:
             "[ZETA WORKER] Checking tasks"
         )
 
+        # Reload the latest task file so we do not use stale in-memory state.
+        self.tasks.tasks = self.tasks.load()
 
         active = self.tasks.tasks["active"]
-
 
         if not active:
 
             print(
                 "[ZETA WORKER] No active tasks"
             )
-
 
             return {
 
@@ -48,61 +47,46 @@ class ZetaWorker:
 
             }
 
-
-
         active.sort(
             key=lambda x: x["priority"],
             reverse=True
         )
 
-
         task = active[0]
-
 
         print(
             "[ZETA WORKER] Selected:",
             task["task"]
         )
 
-
         result = self.developer.build(
             task["task"]
         )
 
-
         success_states = [
-
             "complete",
             "completed",
             "success",
             "passed"
-
         ]
-
 
         if result.get(
             "status"
         ) in success_states:
 
-
             self.tasks.complete_task(
                 task
             )
-
 
             print(
                 "[ZETA WORKER] Task completed"
             )
 
-
             worker_status = "completed"
-
 
         else:
 
             worker_status = "failed"
-
-
 
         return {
 
@@ -122,9 +106,7 @@ class ZetaWorker:
 
 if __name__ == "__main__":
 
-
     worker = ZetaWorker()
-
 
     print(
         worker.run()
