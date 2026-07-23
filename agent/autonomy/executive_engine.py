@@ -5,10 +5,10 @@ from agent.autonomy.experience_engine import ExperienceEngine
 from agent.autonomy.planner import PlannerAgent
 from agent.autonomy.task_manager import TaskManager
 from agent.autonomy.executive_review import ExecutiveReview
+from agent.autonomy.worker_manager import WorkerManager
 
 
 class ExecutiveEngine:
-
 
     def __init__(self):
 
@@ -22,7 +22,7 @@ class ExecutiveEngine:
 
         self.review = ExecutiveReview()
 
-
+        self.worker_manager = WorkerManager()
 
     def think(self):
 
@@ -30,14 +30,11 @@ class ExecutiveEngine:
             "[ZETA EXECUTIVE] Thinking cycle started"
         )
 
-
         # -------------------------
         # MAKE DECISION
         # -------------------------
 
         decision = self.decision.choose_priority()
-
-
 
         # -------------------------
         # CREATE PLAN
@@ -46,8 +43,6 @@ class ExecutiveEngine:
         plan = self.planner.generate_plan(
             decision
         )
-
-
 
         # -------------------------
         # CREATE TASK
@@ -61,7 +56,11 @@ class ExecutiveEngine:
             )
         )
 
+        # -------------------------
+        # EXECUTE TASK
+        # -------------------------
 
+        worker = self.worker_manager.run()
 
         # -------------------------
         # RECORD EXPERIENCE
@@ -77,13 +76,29 @@ class ExecutiveEngine:
 
                 "task": task,
 
+                "worker": worker,
+
                 "result": "created"
 
             }
 
         )
 
+        # -------------------------
+        # EXECUTIVE REVIEW
+        # -------------------------
 
+        review = self.review.review_cycle(
+
+            {
+
+                "decision": decision,
+
+                "status": "ready"
+
+            }
+
+        )
 
         result = {
 
@@ -97,39 +112,24 @@ class ExecutiveEngine:
 
             "task": task,
 
-            "status": "ready"
+            "worker": worker,
+
+            "status": "ready",
+
+            "review": review
 
         }
-
-
-
-        # -------------------------
-        # EXECUTIVE REFLECTION
-        # -------------------------
-
-        review = self.review.review_cycle(
-            result
-        )
-
-
-        result["review"] = review
-
-
 
         print(
             "[ZETA EXECUTIVE] Decision complete"
         )
 
-
         return result
-
 
 
 if __name__ == "__main__":
 
-
     engine = ExecutiveEngine()
-
 
     print(
         engine.think()
