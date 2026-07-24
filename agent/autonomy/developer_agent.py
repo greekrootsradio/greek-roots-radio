@@ -1,25 +1,24 @@
 import os
 from datetime import datetime
 
+from agent.autonomy.executor import Executor
+
 
 class DeveloperAgent:
-
 
     def __init__(self):
 
         self.name = "ZETA Developer Agent"
 
-
         self.project = os.path.expanduser(
             "~/cyprus"
         )
 
-
+        self.executor = Executor()
 
     def inspect_project(self):
 
         files = []
-
 
         for root, dirs, filenames in os.walk(
             self.project
@@ -41,10 +40,7 @@ class DeveloperAgent:
                         )
                     )
 
-
         return files[:50]
-
-
 
     def analyse_task(self, task):
 
@@ -63,10 +59,7 @@ class DeveloperAgent:
 
         }
 
-
         return analysis
-
-
 
     def create_plan(
         self,
@@ -96,10 +89,7 @@ class DeveloperAgent:
 
         }
 
-
         return plan
-
-
 
     def build(
         self,
@@ -111,20 +101,24 @@ class DeveloperAgent:
             task
         )
 
-
         files = self.inspect_project()
-
 
         analysis = self.analyse_task(
             task
         )
-
 
         plan = self.create_plan(
             task,
             files
         )
 
+        print(
+            "[ZETA DEVELOPER] Plan created"
+        )
+
+        execution = self.executor.execute(
+            plan
+        )
 
         result = {
 
@@ -135,7 +129,7 @@ class DeveloperAgent:
                 task,
 
             "action":
-                "development planning",
+                "development execution",
 
             "analysis":
                 analysis,
@@ -143,18 +137,15 @@ class DeveloperAgent:
             "plan":
                 plan,
 
+            "execution":
+                execution,
+
             "status":
-                "planned",
+                execution["status"],
 
             "time":
                 str(datetime.now())
 
         }
-
-
-        print(
-            "[ZETA DEVELOPER] Plan created"
-        )
-
 
         return result
