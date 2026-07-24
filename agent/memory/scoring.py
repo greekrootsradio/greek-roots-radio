@@ -14,126 +14,153 @@ class MemoryScoring:
             "important_dates",
             "preferences",
             "projects",
+            "project",
             "goals"
 
         ]
-
-
-        self.temporary_categories = [
-
-            "conversation",
-            "weather",
-            "short_term",
-            "current_task"
-
-        ]
-
 
 
     def score(self, memory):
 
         category = memory.get(
             "category",
-            "conversation"
+            ""
+        )
+
+        key = memory.get(
+            "key",
+            ""
+        )
+
+        value = memory.get(
+            "value",
+            ""
         )
 
 
-        importance = 3
+        importance = 5
 
+        permanent = False
+
+
+        # -------------------------
+        # PERMANENT MEMORY
+        # -------------------------
 
         if category in self.permanent_categories:
 
-            importance = 10
+            permanent = True
 
 
-        elif category in self.temporary_categories:
+            if category == "user_profile":
+
+                importance = 10
+
+
+            elif category == "health":
+
+                importance = 10
+
+
+            elif category == "family":
+
+                importance = 10
+
+
+            elif category == "projects":
+
+                importance = 9
+
+
+            elif category == "project":
+
+                importance = 9
+
+
+            elif category == "goals":
+
+                importance = 8
+
+
+            elif category == "preferences":
+
+                importance = 7
+
+
+            else:
+
+                importance = 6
+
+
+
+        # -------------------------
+        # TEMPORARY MEMORY
+        # -------------------------
+
+        else:
 
             importance = 2
 
 
-        elif category == "preference":
 
-            importance = 7
+        # -------------------------
+        # KEYWORD BOOSTS
+        # -------------------------
 
+        important_words = [
 
-        elif category == "project":
+            "name",
+            "birthday",
+            "doctor",
+            "allergy",
+            "medicine",
+            "project",
+            "goal",
+            "home",
+            "family"
 
-            importance = 9
-
-
-
-        memory["importance"] = importance
-
-
-        memory["confidence"] = memory.get(
-            "confidence",
-            1.0
-        )
-
-
-        memory["permanent"] = (
-            category in self.permanent_categories
-        )
+        ]
 
 
-        memory["scored_at"] = str(
-            datetime.now()
-        )
-
-
-        return memory
+        combined = (
+            str(key) +
+            " " +
+            str(value)
+        ).lower()
 
 
 
+        for word in important_words:
 
-    def should_keep(self, memory):
+            if word in combined:
 
-        if memory.get(
-            "permanent",
-            False
-        ):
-
-            return True
-
-
-        if memory.get(
-            "importance",
-            0
-        ) >= 5:
-
-            return True
-
-
-        return False
+                importance += 1
 
 
 
+        # Cap score
 
-    def compare(self, old_memory, new_memory):
+        if importance > 10:
 
-        if (
-            old_memory.get("key")
-            ==
-            new_memory.get("key")
-            and
-            old_memory.get("category")
-            ==
-            new_memory.get("category")
-        ):
+            importance = 10
 
-            return {
-
-                "update_required": True,
-
-                "old": old_memory,
-
-                "new": new_memory
-
-            }
 
 
         return {
 
-            "update_required": False
+            **memory,
+
+            "importance": importance,
+
+            "confidence": memory.get(
+                "confidence",
+                1.0
+            ),
+
+            "permanent": permanent,
+
+            "scored_at": str(
+                datetime.now()
+            )
 
         }
