@@ -2,6 +2,7 @@ import requests
 
 from agent.router import route
 from agent.memory import save_memory
+from agent.memory.recall import MemoryRecall
 
 
 OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
@@ -17,6 +18,16 @@ def ask_ai(user_input, memory):
 
     if routed is not None:
         return routed
+
+
+    # -------------------------
+    # MEMORY RECALL
+    # -------------------------
+    recall = MemoryRecall()
+
+    recalled_memories = recall.search(
+        user_input
+    )
 
 
     # -------------------------
@@ -41,6 +52,10 @@ You are Zeta, an autonomous personal AI assistant.
 Your memory about the user:
 
 {memory_context}
+
+Relevant recalled memories:
+
+{recalled_memories}
 
 Conversation:
 
