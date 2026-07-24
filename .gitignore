@@ -1,15 +1,84 @@
-workspace/logs/
-workspace/tests/
-workspace/proposals/
+# =====================================
+# ZETA PROJECT .gitignore
+# =====================================
 
-*.backup
-*.save
-
+# ---------------------
+# Python cache files
+# ---------------------
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
-.DS_Store
+# ---------------------
+# Virtual environments
+# ---------------------
+venv/
+.venv/
+env/
 
+# ---------------------
+# Environment / secrets
+# ---------------------
 .env
+.env.*
+
+# ---------------------
+# Logs
+# ---------------------
 *.log
+logs/
+
+# ---------------------
+# Runtime files
+# ---------------------
+*.pid
+*.sock
+
+# ---------------------
+# ZETA runtime memory
+# ---------------------
+workspace/memory/
 data/zeta_memory.json
+
+# ---------------------
+# ZETA generated workspace
+# ---------------------
+workspace/tmp/
+workspace/cache/
+workspace/proposals/
+workspace/tests/
+
+# ---------------------
+# ZETA editor backups
+# ---------------------
+*.save
+*.backup
+*.bak
+*.tmp
+
+# ---------------------
+# Test / coverage files
+# ---------------------
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ---------------------
+# Editor files
+# ---------------------
+.DS_Store
+.vscode/
+.idea/
+
+# ---------------------
+# OS temporary files
+# ---------------------
+*.swp
+*.swo
+
+# ---------------------
+# Build files
+# ---------------------
+build/
+dist/
+*.egg-info/
