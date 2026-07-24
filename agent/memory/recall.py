@@ -1,54 +1,27 @@
-from agent.memory.core import get_memory
+import json
+from agent.memory.storage import MemoryStorage
 
 
-def recall_memory(message):
+class MemoryRecall:
 
-    memory = get_memory()
+    def __init__(self):
 
-    results = {}
-
-    text = message.lower()
+        self.storage = MemoryStorage()
 
 
-    # projects
+    def search(self, keyword):
 
-    for project in memory.get("projects", {}):
+        memories = self.storage.load()
 
-        if project.lower() in text or "project" in text:
+        results = []
 
-            results["projects"] = memory["projects"]
+        for item in memories:
 
+            text = json.dumps(
+                item
+            ).lower()
 
-    # preferences
+            if keyword.lower() in text:
+                results.append(item)
 
-    for key,value in memory.get("preferences", {}).items():
-
-        if key.replace("_"," ") in text or "music" in text:
-
-            results.setdefault(
-                "preferences",
-                {}
-            )
-
-            results["preferences"][key] = value
-
-
-    # goals
-
-    if "goal" in text or "plan" in text:
-
-        results["goals"] = memory.get(
-            "goals",
-            []
-        )
-
-
-    # user profile always
-
-    results["user_profile"] = memory.get(
-        "user_profile",
-        {}
-    )
-
-
-    return results
+        return results
