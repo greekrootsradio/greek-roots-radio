@@ -19,7 +19,6 @@ class MemoryStorage:
         if not os.path.exists(self.file):
             self._create()
 
-
     def _create(self):
 
         with open(self.file, "w") as f:
@@ -28,7 +27,6 @@ class MemoryStorage:
                 f,
                 indent=4
             )
-
 
     def save(self, memory):
 
@@ -49,8 +47,20 @@ class MemoryStorage:
 
         return memory
 
-
     def load(self):
 
         with open(self.file, "r") as f:
             return json.load(f)
+
+    def update(self, memories):
+
+        with open(self.file, "w") as f:
+            json.dump(
+                memories,
+                f,
+                indent=4
+            )
+
+    def count(self):
+
+        return len(self.load())
