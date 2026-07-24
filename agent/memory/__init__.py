@@ -1,10 +1,19 @@
-from .core import (
-    get_memory,
-    save_memory,
-    update_memory,
-    add_conversation
-)
+from agent.memory.storage import MemoryStorage
 
-from .extractor import (
-    extract_memory
-)
+
+_storage = MemoryStorage()
+
+
+def save_memory(memory):
+
+    return _storage.save(
+        {
+            "type": "conversation",
+            "memory": memory
+        }
+    )
+
+
+def load_memory():
+
+    return _storage.load()
