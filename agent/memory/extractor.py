@@ -1,157 +1,42 @@
-import re
+class MemoryExtractor:
 
-from agent.memory.core import (
-    get_memory,
-    save_memory
-)
+    def extract(self, user_input):
 
+        memories = []
 
-def extract_memory(message):
+        text = user_input.lower()
 
-    memory = get_memory()
+        if "my name is" in text:
+            name = user_input.split("my name is",1)[1].strip()
 
-    text = message.lower()
+            memories.append(
+                {
+                    "type": "user_profile",
+                    "key": "name",
+                    "value": name
+                }
+            )
 
+        if "i like" in text:
+            item = user_input.split("i like",1)[1].strip()
 
-    # --------------------
-    # NAME DETECTION
-    # --------------------
+            memories.append(
+                {
+                    "type": "preference",
+                    "key": "likes",
+                    "value": item
+                }
+            )
 
-    name_patterns = [
-        r"my name is (.+)",
-        r"i am (.+)"
-    ]
+        if "i am building" in text:
+            project = user_input.split("i am building",1)[1].strip()
 
-    for pattern in name_patterns:
+            memories.append(
+                {
+                    "type": "project",
+                    "key": "building",
+                    "value": project
+                }
+            )
 
-        match = re.search(
-            pattern,
-            message,
-            re.IGNORECASE
-        )
-
-        if match:
-
-            name = match.group(1).strip()
-
-            memory["user_profile"]["name"] = name
-
-            break
-
-
-
-    # --------------------
-    # PROJECT DETECTION
-    # --------------------
-
-    project_patterns = [
-        r"my project is (.+)",
-        r"project is (.+)",
-        r"my second project is (.+)"
-    ]
-
-    for pattern in project_patterns:
-
-        match = re.search(
-            pattern,
-            message,
-            re.IGNORECASE
-        )
-
-        if match:
-
-            project = match.group(1).strip()
-
-            memory["projects"][project] = {
-                "status": "active"
-            }
-
-            break
-
-
-
-    # --------------------
-    # MUSIC PREFERENCE
-    # --------------------
-
-    music_patterns = [
-        r"my favourite music style is (.+)",
-        r"my favorite music style is (.+)",
-        r"i like (.+)",
-        r"i love (.+)"
-    ]
-
-
-    for pattern in music_patterns:
-
-        match = re.search(
-            pattern,
-            message,
-            re.IGNORECASE
-        )
-
-
-        if match:
-
-            style = match.group(1).strip()
-
-            memory["preferences"]["music_style"] = style
-
-            break
-
-
-
-    # --------------------
-    # GOAL DETECTION
-    # --------------------
-
-    goal_patterns = [
-        r"my goal is (.+)",
-        r"i want to (.+)",
-        r"i want zeta to (.+)"
-    ]
-
-
-    for pattern in goal_patterns:
-
-        match = re.search(
-            pattern,
-            message,
-            re.IGNORECASE
-        )
-
-
-        if match:
-
-            goal = match.group(1).strip()
-
-            if goal not in memory["goals"]:
-
-                memory["goals"].append(goal)
-
-            break
-
-
-
-    # --------------------
-    # REMEMBER NOTES
-    # --------------------
-
-    if "remember that" in text:
-
-        match = re.search(
-            r"remember that (.+)",
-            message,
-            re.IGNORECASE
-        )
-
-
-        if match:
-
-            note = match.group(1).strip()
-
-            memory["notes"].append(note)
-
-
-
-    save_memory(memory)
+        return memories
