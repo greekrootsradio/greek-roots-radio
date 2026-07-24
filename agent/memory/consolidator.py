@@ -8,6 +8,7 @@ class MemoryConsolidator:
 
         consolidated = {}
 
+
         for memory in memories:
 
             key = (
@@ -15,34 +16,68 @@ class MemoryConsolidator:
                 memory.get("key")
             )
 
+
             if key not in consolidated:
 
-                consolidated[key] = memory
+                consolidated[key] = memory.copy()
 
                 continue
+
 
 
             existing = consolidated[key]
 
 
-            # -------------------------
-            # KEEP HIGHER CONFIDENCE
-            # -------------------------
+            old_value = existing.get(
+                "value"
+            )
 
-            if memory.get(
-                "confidence",
-                0
-            ) > existing.get(
-                "confidence",
-                0
-            ):
 
-                existing["value"] = memory["value"]
-
+            new_value = memory.get(
+                "value"
+            )
 
 
             # -------------------------
-            # INCREASE IMPORTANCE
+            # UPDATE TO NEW INFORMATION
+            # -------------------------
+
+            if new_value != old_value:
+
+                existing["value"] = new_value
+
+
+                if "history" not in existing:
+
+                    existing["history"] = []
+
+
+                existing["history"].append(
+                    {
+                        "old_value": old_value,
+                        "updated": str(
+                            datetime.now()
+                        )
+                    }
+                )
+
+
+
+            # -------------------------
+            # BOOST CONFIDENCE
+            # -------------------------
+
+            existing["confidence"] = min(
+                1.0,
+                existing.get(
+                    "confidence",
+                    0
+                ) + 0.1
+            )
+
+
+            # -------------------------
+            # BOOST IMPORTANCE
             # -------------------------
 
             existing["importance"] = min(
@@ -54,29 +89,8 @@ class MemoryConsolidator:
             )
 
 
-            # -------------------------
-            # UPDATE TIMESTAMP
-            # -------------------------
-
             existing["updated"] = str(
                 datetime.now()
-            )
-
-
-            # -------------------------
-            # KEEP HISTORY
-            # -------------------------
-
-            if "history" not in existing:
-
-                existing["history"] = []
-
-
-            existing["history"].append(
-                {
-                    "value": memory["value"],
-                    "time": str(datetime.now())
-                }
             )
 
 
