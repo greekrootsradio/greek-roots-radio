@@ -10,18 +10,26 @@ class MemoryConsolidator:
             "preferences": []
         }
 
+
         for item in memories:
 
-            if item["type"] == "user_profile":
+            category = item.get(
+                "category",
+                item.get("type")
+            )
+
+
+            if category == "user_profile":
 
                 profile["user_profile"][
                     item["key"]
                 ] = item["value"]
 
 
-            elif item["type"] == "preference":
+            elif category == "preference":
 
                 if item["value"] not in profile["preferences"]:
+
                     profile["preferences"].append(
                         item["value"]
                     )
@@ -37,6 +45,11 @@ class MemoryConsolidator:
 
         return profile
 
+
+
+    # compatibility alias
+    # allows older pipeline tests
+    # to call merge()
 
     def merge(self, memories):
 
