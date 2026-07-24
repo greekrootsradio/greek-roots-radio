@@ -12,3 +12,4 @@ __pycache__/
 
 .env
 *.log
+data/zeta_memory.json
