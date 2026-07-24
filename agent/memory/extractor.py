@@ -1,13 +1,23 @@
 class MemoryExtractor:
 
+
     def extract(self, user_input):
 
         memories = []
 
         text = user_input.lower()
 
+
+        # -------------------------
+        # NAME EXTRACTION
+        # -------------------------
         if "my name is" in text:
-            name = user_input.split("my name is",1)[1].strip()
+
+            name = (
+                user_input
+                .split("is", 1)[1]
+                .strip()
+            )
 
             memories.append(
                 {
@@ -17,26 +27,25 @@ class MemoryExtractor:
                 }
             )
 
+
+        # -------------------------
+        # PREFERENCE EXTRACTION
+        # -------------------------
         if "i like" in text:
-            item = user_input.split("i like",1)[1].strip()
+
+            preference = (
+                user_input
+                .lower()
+                .split("i like", 1)[1]
+                .strip()
+            )
 
             memories.append(
                 {
                     "type": "preference",
-                    "key": "likes",
-                    "value": item
+                    "value": preference
                 }
             )
 
-        if "i am building" in text:
-            project = user_input.split("i am building",1)[1].strip()
-
-            memories.append(
-                {
-                    "type": "project",
-                    "key": "building",
-                    "value": project
-                }
-            )
 
         return memories
