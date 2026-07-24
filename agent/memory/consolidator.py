@@ -1,56 +1,85 @@
-from agent.memory import save_memory
+from datetime import datetime
 
 
 class MemoryConsolidator:
 
+
     def consolidate(self, memories):
 
-        profile = {
-            "user_profile": {},
-            "preferences": []
-        }
+        consolidated = {}
+
+        for memory in memories:
+
+            key = (
+                memory.get("category"),
+                memory.get("key")
+            )
+
+            if key not in consolidated:
+
+                consolidated[key] = memory
+
+                continue
 
 
-        for item in memories:
+            existing = consolidated[key]
 
-            category = item.get(
-                "category",
-                item.get("type")
+
+            # -------------------------
+            # KEEP HIGHER CONFIDENCE
+            # -------------------------
+
+            if memory.get(
+                "confidence",
+                0
+            ) > existing.get(
+                "confidence",
+                0
+            ):
+
+                existing["value"] = memory["value"]
+
+
+
+            # -------------------------
+            # INCREASE IMPORTANCE
+            # -------------------------
+
+            existing["importance"] = min(
+                10,
+                existing.get(
+                    "importance",
+                    5
+                ) + 1
             )
 
 
-            if category == "user_profile":
+            # -------------------------
+            # UPDATE TIMESTAMP
+            # -------------------------
 
-                profile["user_profile"][
-                    item["key"]
-                ] = item["value"]
-
-
-            elif category == "preference":
-
-                if item["value"] not in profile["preferences"]:
-
-                    profile["preferences"].append(
-                        item["value"]
-                    )
+            existing["updated"] = str(
+                datetime.now()
+            )
 
 
-        save_memory(
-            {
-                "type": "profile",
-                "memory": profile
-            }
+            # -------------------------
+            # KEEP HISTORY
+            # -------------------------
+
+            if "history" not in existing:
+
+                existing["history"] = []
+
+
+            existing["history"].append(
+                {
+                    "value": memory["value"],
+                    "time": str(datetime.now())
+                }
+            )
+
+
+        return list(
+            consolidated.values()
         )
-
-
-        return profile
-
-
-
-    # compatibility alias
-    # allows older pipeline tests
-    # to call merge()
-
-    def merge(self, memories):
-
-        return self.consolidate(memories)
