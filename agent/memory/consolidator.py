@@ -1,23 +1,43 @@
-PYTHONPATH=. python3 - <<'PY'
+from agent.memory import save_memory
 
-from agent.memory.consolidator import MemoryConsolidator
 
-c = MemoryConsolidator()
+class MemoryConsolidator:
 
-print(
-    c.consolidate(
-        [
+    def consolidate(self, memories):
+
+        profile = {
+            "user_profile": {},
+            "preferences": []
+        }
+
+        for item in memories:
+
+            if item["type"] == "user_profile":
+
+                profile["user_profile"][
+                    item["key"]
+                ] = item["value"]
+
+
+            elif item["type"] == "preference":
+
+                if item["value"] not in profile["preferences"]:
+                    profile["preferences"].append(
+                        item["value"]
+                    )
+
+
+        save_memory(
             {
-            "type":"user_profile",
-            "key":"name",
-            "value":"Andreas"
-            },
-            {
-            "type":"preference",
-            "value":"greek music"
+                "type": "profile",
+                "memory": profile
             }
-        ]
-    )
-)
+        )
 
-PY
+
+        return profile
+
+
+    def merge(self, memories):
+
+        return self.consolidate(memories)
