@@ -1,79 +1,72 @@
+import subprocess
 import os
-import py_compile
 from datetime import datetime
 
 
 class TesterAgent:
 
+
     def __init__(self):
 
-        self.workspace = os.path.expanduser(
-            "~/cyprus/workspace/proposals"
-        )
+        self.name = "ZETA Tester Agent"
 
-        self.logs = os.path.expanduser(
-            "~/cyprus/workspace/tests"
-        )
-
-        os.makedirs(
-            self.logs,
-            exist_ok=True
+        self.project = os.path.expanduser(
+            "~/cyprus"
         )
 
 
-    def test_all(self):
+    def run_tests(self):
 
-        results = []
+        try:
 
-        for file in os.listdir(self.workspace):
-
-            if file.endswith(".py"):
-
-                path = os.path.join(
-                    self.workspace,
-                    file
-                )
-
-                try:
-
-                    py_compile.compile(
-                        path,
-                        doraise=True
-                    )
-
-                    result = (
-                        f"{file}: PASS"
-                    )
-
-                except Exception as e:
-
-                    result = (
-                        f"{file}: FAIL {e}"
-                    )
-
-
-                results.append(result)
-
-
-        report = "\n".join(results)
-
-        filename = os.path.join(
-            self.logs,
-            "test_report.txt"
-        )
-
-        with open(filename, "w") as f:
-            f.write(
-                "ZETA TEST REPORT\n"
-                + str(datetime.now())
-                + "\n\n"
-                + report
+            result = subprocess.run(
+                [
+                    "python3",
+                    "-m",
+                    "pytest"
+                ],
+                cwd=self.project,
+                capture_output=True,
+                text=True
             )
 
 
-        print(
-            "[ZETA Tester] Report:",
-            filename
-        )
+            return {
 
-        return results
+                "agent":
+                    self.name,
+
+                "status":
+                    "passed"
+                    if result.returncode == 0
+                    else "failed",
+
+                "output":
+                    result.stdout[-1000:],
+
+                "errors":
+                    result.stderr[-1000:],
+
+                "time":
+                    str(datetime.now())
+
+            }
+
+
+        except Exception as e:
+
+            return {
+
+                "agent":
+                    self.name,
+
+                "status":
+                    "error",
+
+                "message":
+                    str(e),
+
+                "time":
+                    str(datetime.now())
+
+            }
