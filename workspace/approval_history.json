@@ -1,0 +1,14 @@
+[
+    {
+        "proposal": "Improve memory consolidation reliability",
+        "decision": "approved",
+        "reason": "Passed manual approval gate",
+        "created": "2026-07-24 21:36:31.479978"
+    },
+    {
+        "proposal": "Improve ZETA reliability",
+        "decision": "approved",
+        "reason": "Passed manual approval gate",
+        "created": "2026-07-24 21:43:27.987845"
+    }
+]

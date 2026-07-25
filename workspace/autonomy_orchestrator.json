@@ -1,0 +1,111 @@
+[
+    {
+        "agent": "ZETA Autonomy Orchestrator",
+        "failure": "MemoryConsolidator AttributeError",
+        "created": "2026-07-24 21:43:27.973625",
+        "supervisor": {
+            "agent": "ZETA Supervisor Agent",
+            "health": {
+                "agent": "ZETA Health Monitor",
+                "checks": [
+                    {
+                        "component": "Autonomy Controller",
+                        "status": "OK"
+                    },
+                    {
+                        "component": "Diagnostics",
+                        "status": "OK"
+                    },
+                    {
+                        "component": "Failure Memory",
+                        "status": "OK"
+                    },
+                    {
+                        "component": "Repair History",
+                        "status": "OK"
+                    },
+                    {
+                        "component": "Tester",
+                        "status": "WARNING"
+                    },
+                    {
+                        "component": "Git Manager",
+                        "status": "OK"
+                    }
+                ],
+                "created": "2026-07-24 21:43:27.973634"
+            },
+            "created": "2026-07-24 21:43:27.973636",
+            "diagnostics": {
+                "agent": "ZETA Diagnostics Agent",
+                "failure": "MemoryConsolidator AttributeError",
+                "analysis": "Failure captured for investigation",
+                "next": "send to repair planner",
+                "created": "2026-07-24 21:43:27.973637"
+            },
+            "memory": {
+                "failure": "MemoryConsolidator AttributeError",
+                "action": "queued investigation",
+                "result": "pending",
+                "created": "2026-07-24 21:43:27.973701"
+            },
+            "repair": {
+                "agent": "ZETA Repair Agent",
+                "file": "unknown",
+                "reason": "prepare investigation proposal",
+                "action": "prepare repair proposal",
+                "status": "awaiting approval",
+                "created": "2026-07-24 21:43:27.973870"
+            },
+            "git": {
+                "agent": "ZETA Git Manager Agent",
+                "task": "Supervisor investigation checkpoint",
+                "changes": "?? agent/autonomy/autonomy_orchestrator.py\n?? workspace/approval_history.json\n?? workspace/repair_execution.json",
+                "proposal": "create git checkpoint",
+                "status": "awaiting approval",
+                "created": "2026-07-24 21:43:27.987812"
+            }
+        },
+        "planner": {
+            "agent": "ZETA Improvement Planner",
+            "problem": "MemoryConsolidator AttributeError",
+            "objective": "Improve ZETA reliability",
+            "plan": [
+                "analyse current behaviour",
+                "identify possible improvement",
+                "prepare proposal",
+                "request approval",
+                "run validation"
+            ],
+            "status": "awaiting approval",
+            "created": "2026-07-24 21:43:27.987839"
+        },
+        "proposal": {
+            "type": "improvement",
+            "description": "Improve ZETA reliability",
+            "status": "awaiting approval",
+            "created": "2026-07-24 21:43:27.987842"
+        },
+        "approval": {
+            "proposal": "Improve ZETA reliability",
+            "decision": "approved",
+            "reason": "Passed manual approval gate",
+            "created": "2026-07-24 21:43:27.987845"
+        },
+        "execution": {
+            "agent": "ZETA Repair Executor",
+            "proposal": "Improve ZETA reliability",
+            "action": "prepare repair task",
+            "status": "awaiting validation",
+            "created": "2026-07-24 21:43:27.988136"
+        },
+        "validation": {
+            "agent": "ZETA Repair Executor",
+            "proposal": "Improve ZETA reliability",
+            "validation": "validation completed",
+            "status": "completed",
+            "created": "2026-07-24 21:43:27.988314"
+        },
+        "status": "completed"
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "file": "workspace/memory.json",
+        "created": "2026-07-24 21:50:31.802148",
+        "status": "missing",
+        "action": "request rebuild"
+    },
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "task": "memory rebuild",
+        "file": "workspace/memory.json",
+        "status": "rebuilt",
+        "created": "2026-07-24 21:50:31.802311"
+    },
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "task": "memory rebuild",
+        "file": "workspace/memory.json",
+        "status": "rebuilt",
+        "created": "2026-07-24 21:54:19.414097"
+    },
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "task": "memory rebuild",
+        "file": "workspace/memory.json",
+        "status": "rebuilt",
+        "created": "2026-07-24 21:56:30.662616"
+    },
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "task": "memory rebuild",
+        "file": "workspace/memory.json",
+        "status": "rebuilt",
+        "created": "2026-07-25 06:55:23.131129"
+    },
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "task": "memory rebuild",
+        "file": "workspace/memory.json",
+        "status": "rebuilt",
+        "created": "2026-07-25 07:03:37.797629"
+    },
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "task": "memory rebuild",
+        "file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "status": "rebuilt",
+        "created": "2026-07-25 07:07:07.970588"
+    },
+    {
+        "agent": "ZETA Memory Recovery Agent",
+        "task": "memory rebuild",
+        "file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "status": "rebuilt",
+        "created": "2026-07-25 07:09:46.463052"
+    }
+]

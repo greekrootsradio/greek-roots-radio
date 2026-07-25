@@ -1,0 +1,147 @@
+[
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "workspace/memory.json",
+        "created": "2026-07-24 21:52:53.471342",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "failed",
+                "reason": "memory file missing"
+            }
+        ],
+        "status": "invalid"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "workspace/memory.json",
+        "created": "2026-07-24 21:54:19.413855",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "failed",
+                "reason": "memory file missing"
+            }
+        ],
+        "status": "invalid"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "workspace/memory.json",
+        "created": "2026-07-24 21:56:30.662376",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "failed",
+                "reason": "memory file missing"
+            }
+        ],
+        "status": "invalid"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "workspace/memory.json",
+        "created": "2026-07-25 06:55:23.129179",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "failed",
+                "reason": "memory file missing"
+            }
+        ],
+        "status": "invalid"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "workspace/memory.json",
+        "created": "2026-07-25 07:03:37.795500",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "failed",
+                "reason": "memory file missing"
+            }
+        ],
+        "status": "invalid"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "created": "2026-07-25 07:07:07.967516",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "passed"
+            },
+            {
+                "test": "json_format",
+                "status": "passed"
+            },
+            {
+                "test": "memory_structure",
+                "status": "passed"
+            }
+        ],
+        "status": "healthy"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "created": "2026-07-25 07:09:46.461254",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "passed"
+            },
+            {
+                "test": "json_format",
+                "status": "passed"
+            },
+            {
+                "test": "memory_structure",
+                "status": "passed"
+            }
+        ],
+        "status": "healthy"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "created": "2026-07-25 07:11:12.393313",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "passed"
+            },
+            {
+                "test": "json_format",
+                "status": "passed"
+            },
+            {
+                "test": "memory_structure",
+                "status": "passed"
+            }
+        ],
+        "status": "healthy"
+    },
+    {
+        "agent": "ZETA Memory Integrity Checker",
+        "file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "created": "2026-07-25 07:14:43.910344",
+        "checks": [
+            {
+                "test": "file_exists",
+                "status": "passed"
+            },
+            {
+                "test": "json_format",
+                "status": "passed"
+            },
+            {
+                "test": "memory_structure",
+                "status": "passed"
+            }
+        ],
+        "status": "healthy"
+    }
+]

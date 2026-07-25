@@ -1,0 +1,172 @@
+[
+    {
+        "agent": "ZETA Memory Guardian",
+        "memory_file": "workspace/memory.json",
+        "created": "2026-07-24 21:54:19.414093",
+        "integrity": {
+            "agent": "ZETA Memory Integrity Checker",
+            "file": "workspace/memory.json",
+            "created": "2026-07-24 21:54:19.413855",
+            "checks": [
+                {
+                    "test": "file_exists",
+                    "status": "failed",
+                    "reason": "memory file missing"
+                }
+            ],
+            "status": "invalid"
+        },
+        "action": "memory recovery requested",
+        "recovery": {
+            "agent": "ZETA Memory Recovery Agent",
+            "task": "memory rebuild",
+            "file": "workspace/memory.json",
+            "status": "rebuilt",
+            "created": "2026-07-24 21:54:19.414097"
+        }
+    },
+    {
+        "agent": "ZETA Memory Guardian",
+        "memory_file": "workspace/memory.json",
+        "created": "2026-07-24 21:56:30.662612",
+        "integrity": {
+            "agent": "ZETA Memory Integrity Checker",
+            "file": "workspace/memory.json",
+            "created": "2026-07-24 21:56:30.662376",
+            "checks": [
+                {
+                    "test": "file_exists",
+                    "status": "failed",
+                    "reason": "memory file missing"
+                }
+            ],
+            "status": "invalid"
+        },
+        "action": "memory recovery requested",
+        "recovery": {
+            "agent": "ZETA Memory Recovery Agent",
+            "task": "memory rebuild",
+            "file": "workspace/memory.json",
+            "status": "rebuilt",
+            "created": "2026-07-24 21:56:30.662616"
+        }
+    },
+    {
+        "agent": "ZETA Memory Guardian",
+        "memory_file": "workspace/memory.json",
+        "created": "2026-07-25 06:55:23.131104",
+        "integrity": {
+            "agent": "ZETA Memory Integrity Checker",
+            "file": "workspace/memory.json",
+            "created": "2026-07-25 06:55:23.129179",
+            "checks": [
+                {
+                    "test": "file_exists",
+                    "status": "failed",
+                    "reason": "memory file missing"
+                }
+            ],
+            "status": "invalid"
+        },
+        "action": "memory recovery requested",
+        "recovery": {
+            "agent": "ZETA Memory Recovery Agent",
+            "task": "memory rebuild",
+            "file": "workspace/memory.json",
+            "status": "rebuilt",
+            "created": "2026-07-25 06:55:23.131129"
+        }
+    },
+    {
+        "agent": "ZETA Memory Guardian",
+        "memory_file": "workspace/memory.json",
+        "created": "2026-07-25 07:03:37.797590",
+        "integrity": {
+            "agent": "ZETA Memory Integrity Checker",
+            "file": "workspace/memory.json",
+            "created": "2026-07-25 07:03:37.795500",
+            "checks": [
+                {
+                    "test": "file_exists",
+                    "status": "failed",
+                    "reason": "memory file missing"
+                }
+            ],
+            "status": "invalid"
+        },
+        "action": "memory recovery requested",
+        "recovery": {
+            "agent": "ZETA Memory Recovery Agent",
+            "task": "memory rebuild",
+            "file": "workspace/memory.json",
+            "status": "rebuilt",
+            "created": "2026-07-25 07:03:37.797629"
+        }
+    },
+    {
+        "agent": "ZETA Memory Guardian",
+        "memory_file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "created": "2026-07-25 07:07:07.967143",
+        "integrity": {
+            "agent": "ZETA Memory Integrity Checker",
+            "file": "/Users/andreasjackson/cyprus/data/memory.json",
+            "created": "2026-07-25 07:07:07.967516",
+            "checks": [
+                {
+                    "test": "file_exists",
+                    "status": "passed"
+                },
+                {
+                    "test": "json_format",
+                    "status": "passed"
+                },
+                {
+                    "test": "memory_structure",
+                    "status": "passed"
+                }
+            ],
+            "status": "healthy"
+        },
+        "action": "memory recovery requested",
+        "recovery": {
+            "agent": "ZETA Memory Recovery Agent",
+            "task": "memory rebuild",
+            "file": "/Users/andreasjackson/cyprus/data/memory.json",
+            "status": "rebuilt",
+            "created": "2026-07-25 07:07:07.970588"
+        }
+    },
+    {
+        "agent": "ZETA Memory Guardian",
+        "memory_file": "/Users/andreasjackson/cyprus/data/memory.json",
+        "created": "2026-07-25 07:09:46.461244",
+        "integrity": {
+            "agent": "ZETA Memory Integrity Checker",
+            "file": "/Users/andreasjackson/cyprus/data/memory.json",
+            "created": "2026-07-25 07:09:46.461254",
+            "checks": [
+                {
+                    "test": "file_exists",
+                    "status": "passed"
+                },
+                {
+                    "test": "json_format",
+                    "status": "passed"
+                },
+                {
+                    "test": "memory_structure",
+                    "status": "passed"
+                }
+            ],
+            "status": "healthy"
+        },
+        "action": "memory recovery requested",
+        "recovery": {
+            "agent": "ZETA Memory Recovery Agent",
+            "task": "memory rebuild",
+            "file": "/Users/andreasjackson/cyprus/data/memory.json",
+            "status": "rebuilt",
+            "created": "2026-07-25 07:09:46.463052"
+        }
+    }
+]
