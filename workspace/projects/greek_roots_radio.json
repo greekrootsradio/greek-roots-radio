@@ -1,17 +1,20 @@
 {
-  "project": "Greek Roots Radio",
-  "owner": "Andreas Jackson",
-  "mission": "Create an AI assisted internet radio station celebrating Greek Cypriot culture in the UK",
-  "status": "planning",
-  "created": "2026-07-25",
-  "goals": [
-    "Create station identity",
-    "Build AI radio host",
-    "Create Greek Cypriot music playlists",
-    "Set up streaming platform",
-    "Create website",
-    "Launch promotion"
-  ],
-  "priority": "high",
-  "next_action": "Research best streaming architecture"
+    "agent": "ZETA Radio Project Manager",
+    "project": "Greek Roots Radio",
+    "created": "2026-07-25 08:02:58.661118",
+    "mission": [
+        "Create internet radio station",
+        "Develop Greek Cypriot identity",
+        "Blend Greek music and reggae influences",
+        "Create AI assisted hosting system",
+        "Build music scheduling workflow"
+    ],
+    "next_tasks": [
+        "Define station branding",
+        "Create station schedule",
+        "Research streaming platforms",
+        "Design AI presenter personality",
+        "Create launch plan"
+    ],
+    "status": "planning phase"
 }
