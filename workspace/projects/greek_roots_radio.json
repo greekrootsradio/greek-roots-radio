@@ -1,0 +1,17 @@
+{
+  "project": "Greek Roots Radio",
+  "owner": "Andreas Jackson",
+  "mission": "Create an AI assisted internet radio station celebrating Greek Cypriot culture in the UK",
+  "status": "planning",
+  "created": "2026-07-25",
+  "goals": [
+    "Create station identity",
+    "Build AI radio host",
+    "Create Greek Cypriot music playlists",
+    "Set up streaming platform",
+    "Create website",
+    "Launch promotion"
+  ],
+  "priority": "high",
+  "next_action": "Research best streaming architecture"
+}
