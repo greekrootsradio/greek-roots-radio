@@ -16,5 +16,40 @@
         "Design AI presenter personality",
         "Create launch plan"
     ],
-    "status": "planning phase"
+    "status": "station build in progress",
+    "branding": {
+        "station_name": "Greek Roots Radio",
+        "tagline": "Greek Cypriots Growing Up in the UK",
+        "identity": "Greek \u2022 Reggae \u2022 Community \u2022 Culture"
+    },
+    "music_categories": [
+        "Classic Greek",
+        "Cypriot",
+        "Laiko",
+        "Modern Greek",
+        "Reggae",
+        "Roots Reggae",
+        "Dub",
+        "Mediterranean Fusion"
+    ],
+    "daily_schedule": {
+        "06:00": "Morning Coffee",
+        "09:00": "Community Mix",
+        "12:00": "Greek Classics",
+        "15:00": "Cyprus Hour",
+        "18:00": "Drive Home",
+        "20:00": "Reggae Roots",
+        "22:00": "Late Night Chill"
+    },
+    "ai_presenter": {
+        "name": "ZETA",
+        "role": "AI Radio Host",
+        "voice_style": "Warm Greek Cypriot",
+        "languages": [
+            "English",
+            "Greek",
+            "Cypriot Greek"
+        ]
+    },
+    "last_updated": "2026-07-25 23:39:11.362434"
 }
