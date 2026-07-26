@@ -1,10 +1,6 @@
-# ==============================
-# ZETA AI PROJECT
-# Runtime protection
-# ==============================
-
-# Environment
-.env
+# =========================
+# ZETA Runtime Protection
+# =========================
 
 # Logs
 *.log
@@ -12,37 +8,52 @@ cyprus.log
 cyprus_error.log
 worker.log
 
-# Runtime PID
+# Runtime PID files
 *.pid
 zeta.pid
 
-# Memory databases
+# Environment secrets
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+
+# =========================
+# ZETA Memory
+# =========================
+
 data/zeta_memory.json
 workspace/memory/
-workspace/radio_memory/
-
-# Generated radio content
-workspace/radio_outputs/
-
-# Generated work
+workspace/logs/
 workspace/proposals/
 workspace/tests/
-workspace/logs/
 
-# Backups
+# =========================
+# Greek Roots Radio Runtime
+# =========================
+
+workspace/radio_memory/
+workspace/radio_outputs/
+
+workspace/projects/*.json
+
+# =========================
+# Backup files
+# =========================
+
 *.backup
-*.save
 *.bak
+*.save
 
-# Python
-__pycache__/
-*.pyc
+# =========================
+# Model files
+# =========================
 
-# macOS
-.DS_Store
-
-# Editors
-*.swp
-*.swo
-.idea/
-.vscode/
+# Keep large AI models out of normal git commits
+models/
