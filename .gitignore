@@ -1,84 +1,71 @@
-workspace/*.json# =====================================
-# ZETA PROJECT .gitignore
-# =====================================
+# ==========================================
+# ZETA PROJECT GITIGNORE
+# ==========================================
 
-# ---------------------
-# Python cache files
-# ---------------------
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 
-# ---------------------
 # Virtual environments
-# ---------------------
 venv/
-.venv/
 env/
+.venv/
 
-# ---------------------
-# Environment / secrets
-# ---------------------
+# Environment variables
 .env
-.env.*
 
-# ---------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
 # Logs
-# ---------------------
 *.log
-logs/
 
-# ---------------------
-# Runtime files
-# ---------------------
-*.pid
-*.sock
-
-# ---------------------
-# ZETA runtime memory
-# ---------------------
-workspace/memory/
-data/zeta_memory.json
-
-# ---------------------
-# ZETA generated workspace
-# ---------------------
-workspace/tmp/
-workspace/cache/
-workspace/proposals/
-workspace/tests/
-
-# ---------------------
-# ZETA editor backups
-# ---------------------
-*.save
-*.backup
-*.bak
+# Temporary files
 *.tmp
+*.bak
+*.save
+*.swp
 
-# ---------------------
-# Test / coverage files
-# ---------------------
-.coverage
-htmlcov/
+# Pytest
 .pytest_cache/
 
-# ---------------------
-# Editor files
-# ---------------------
-.DS_Store
+# IDE files
 .vscode/
 .idea/
 
-# ---------------------
-# OS temporary files
-# ---------------------
-*.swp
-*.swo
+# ==========================================
+# ZETA RUNTIME DATA
+# ==========================================
 
-# ---------------------
-# Build files
-# ---------------------
-build/
-dist/
-*.egg-info/
+# Memory generated during operation
+workspace/memory/
+workspace/radio_memory/
+
+# Radio generated output
+workspace/radio_outputs/
+
+# Runtime histories
+workspace/logs/
+
+# Autonomy runtime state
+workspace/autonomy_orchestrator.json
+workspace/decision_history.json
+workspace/approval_history.json
+workspace/repair_execution.json
+workspace/test_results.json
+
+# ==========================================
+# Generated audio / media
+# ==========================================
+
+audio/generated/
+models/downloads/
+
+# ==========================================
+# Local backups
+# ==========================================
+
+workspace/backups/
