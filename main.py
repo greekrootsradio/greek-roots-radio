@@ -4,78 +4,16 @@ import threading
 import time
 
 from agent.brain import ask_ai
-from agent.memory import get_memory, save_memory
+from agent.memory.core import get_memory, save_memory
 from agent.autonomy.engine import AutonomyEngine
-
-# -------------------------------------------------
-# PROJECT MANAGERS
-# -------------------------------------------------
-
-try:
-    from agent.projects.radio_project_manager import RadioProjectManager
-except Exception:
-    RadioProjectManager = None
-
 
 app = Flask(__name__)
 
-
-print("==============================================")
-print("           ZETA AUTONOMY CORE ONLINE")
-print("==============================================")
+print("ZETA AUTONOMY CORE ONLINE")
 
 
 # -------------------------------------------------
-# LOAD ACTIVE PROJECTS
-# -------------------------------------------------
-
-def load_projects():
-
-    if RadioProjectManager is None:
-        print("Project Manager not available.")
-        return
-
-    try:
-
-        radio = RadioProjectManager()
-
-        report = radio.analyse()
-
-        print()
-        print("==============================================")
-        print(" ACTIVE PROJECT")
-        print("==============================================")
-
-        print(f"Project : {report.get('project')}")
-        print(f"Status  : {report.get('status')}")
-        print()
-
-        print("Mission")
-
-        for item in report.get("mission", []):
-            print(f"  • {item}")
-
-        print()
-
-        print("Next Tasks")
-
-        for task in report.get("next_tasks", []):
-            print(f"  • {task}")
-
-        print("==============================================")
-        print()
-
-    except Exception as e:
-
-        print("Unable to load project manager")
-        print(e)
-
-
-load_projects()
-
-
-# -------------------------------------------------
-# START AUTONOMY ENGINE
+# AUTONOMY ENGINE
 # -------------------------------------------------
 
 def start_autonomy():
@@ -83,7 +21,6 @@ def start_autonomy():
     print("ZETA Autonomy Engine Started")
 
     engine = AutonomyEngine()
-
     engine.start()
 
 
@@ -122,18 +59,17 @@ def home():
     return """
     <h1>ZETA AUTONOMY CORE</h1>
 
-    <p>Online</p>
+    <p>Status: Online</p>
 
     <form action="/chat" method="post">
 
         <input
             name="message"
-            style="width:400px">
+            style="width:500px"
+        >
 
         <button type="submit">
-
             Send
-
         </button>
 
     </form>
@@ -205,7 +141,7 @@ def chat():
 
 
 # -------------------------------------------------
-# SERVER
+# START SERVER
 # -------------------------------------------------
 
 if __name__ == "__main__":
