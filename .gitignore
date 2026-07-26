@@ -1,71 +1,48 @@
-# ==========================================
-# ZETA PROJECT GITIGNORE
-# ==========================================
+# ==============================
+# ZETA AI PROJECT
+# Runtime protection
+# ==============================
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environments
-venv/
-env/
-.venv/
-
-# Environment variables
+# Environment
 .env
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
 
 # Logs
 *.log
+cyprus.log
+cyprus_error.log
+worker.log
 
-# Temporary files
-*.tmp
-*.bak
-*.save
-*.swp
+# Runtime PID
+*.pid
+zeta.pid
 
-# Pytest
-.pytest_cache/
-
-# IDE files
-.vscode/
-.idea/
-
-# ==========================================
-# ZETA RUNTIME DATA
-# ==========================================
-
-# Memory generated during operation
+# Memory databases
+data/zeta_memory.json
 workspace/memory/
 workspace/radio_memory/
 
-# Radio generated output
+# Generated radio content
 workspace/radio_outputs/
 
-# Runtime histories
+# Generated work
+workspace/proposals/
+workspace/tests/
 workspace/logs/
 
-# Autonomy runtime state
-workspace/autonomy_orchestrator.json
-workspace/decision_history.json
-workspace/approval_history.json
-workspace/repair_execution.json
-workspace/test_results.json
+# Backups
+*.backup
+*.save
+*.bak
 
-# ==========================================
-# Generated audio / media
-# ==========================================
+# Python
+__pycache__/
+*.pyc
 
-audio/generated/
-models/downloads/
+# macOS
+.DS_Store
 
-# ==========================================
-# Local backups
-# ==========================================
-
-workspace/backups/
+# Editors
+*.swp
+*.swo
+.idea/
+.vscode/
