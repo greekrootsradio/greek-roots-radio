@@ -23,7 +23,7 @@ class SelfCoder:
             
             prompt += "\n\nCRITICAL: Return ONLY valid, executable Python code inside standard triple backticks. Do NOT include any conversational text, explanations, or greetings."
             
-            raw_output = ask_ai(prompt)
+            raw_output = ask_ai(prompt, memory={})
             code = self._extract_code(raw_output)
             
             with open(file_path, "w") as f:
