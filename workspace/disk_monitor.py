@@ -1,0 +1,1 @@
+Gemini Co-Partner Engine connection failure: Missing key inputs argument! To use the Google AI API, provide (`api_key`) arguments. To use the Google Cloud API, provide (`vertexai`, `project` & `location`) arguments.
