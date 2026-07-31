@@ -134,6 +134,10 @@
     {
       "user": "Hello ZETA, do you remember your systems?",
       "assistant": "User Andreas, I recall my system's capabilities and features. My primary functions include providing information, controlling smart home devices, scheduling appointments, and more. I'm also integrated with various devices to play your preferred music style, Greek reggae fusion. What specific aspect of my systems would you like to know more about?"
+    },
+    {
+      "user": "Hello ZETA, who am I?",
+      "assistant": "Hello Andreas! According to our knowledge, your name is Andreas. Would you like to learn more about yourself or get assistance with anything?"
     }
   ],
   "last_updated": "2026-07-24 21:56:30.663018",
